@@ -1,0 +1,19 @@
+{% extends 'layouts/base.html' %}
+
+{% block titulo %}
+    crear producto
+{% endblock %}
+
+{% block contenido %}
+    <h1>Crear producto</h1>
+    <a href="{{ url_for('productos') }}">Volver</a>
+    <!--crear formulario para llenar base de datos-->
+    <form action="{{ url_for('crear_producto') }}" method="POST">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre">
+        </div>
+        <!--boton para enviar formulario-->
+        <button type="submit">Guardar</button>
+    </form>
+{% endblock %}

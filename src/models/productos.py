@@ -10,8 +10,11 @@ class ProductosModel():
 
         productos = cursor.fetchall()
 
-        cursor.close
+        cursor.close()
 
         return productos
-    def crear(self, data):
-        pass
+    def crear(self, nombre):
+        cursor = DB.cursor()
+
+        cursor.execute('insert into productos(nombre) values(?)', (nombre,))
+        cursor.close()

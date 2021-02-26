@@ -9,3 +9,4 @@ config ={
 }
 
 DB = mariadb.connect(**config)
+DB.autocommit= True
