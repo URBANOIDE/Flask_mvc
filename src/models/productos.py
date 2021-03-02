@@ -13,8 +13,8 @@ class ProductosModel():
         cursor.close()
 
         return productos
-    def crear(self, nombre):
+    def crear(self, nombre, descripcion, precio_compra, precio_venta, activo):
         cursor = DB.cursor()
 
-        cursor.execute('insert into productos(nombre) values(?)', (nombre,))
+        cursor.execute('insert into productos(nombre, descripcion, precio_compra, precio_venta, activo) values(?,?,?,?,?)', (nombre,descripcion,precio_compra,precio_venta,activo,))
         cursor.close()
