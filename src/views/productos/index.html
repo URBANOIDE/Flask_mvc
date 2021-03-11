@@ -1,36 +1,35 @@
-{% extends 'layouts/base.html' %}
-
-{% block titulo %}
-    Productos
-{% endblock %}
-
+{% extends 'layouts/base.html' %} {% block titulo %} Productos {% endblock %}
 {% block contenido %}
-    <h1>Listado de productos</h1>
+<h1>Listado de Productos</h1>
 
-    <a href="{{ url_for('crear_producto') }}">crear</a>
+<a href="{{ url_for('crear_producto') }}">Crear Productos</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Precio de venta</th>
+            <th>Precio de compra</th>
+            <th>Ganancia (%)</th>
+            <th>Estado</th>
+            <th>Editar Producto</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for producto in productos %}
+        <tr>
+            <td>{{ producto[0] }}</td>
+            <td>{{ producto[1] }}</td>
+            <td>{{ producto[2] }}</td>
+            <td>{{ producto[3] }}</td>
+            <td>{{ producto[4] }}</td>
+            <td>{{ producto[5] }}</td>
+            <td>{{ producto[6] }}</td>
+            <td><a href="{{ url_for('editar_producto', id=producto[0])}}">Editar</a></td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Precio de Compra</th>
-                <th>Precio de Venta</th>
-                <th>Activo</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for producto in productos %}
-            <tr>
-                <td>{{ producto[0]}}</td>
-                <td>{{ producto[1]}}</td>
-                <td>{{ producto[2]}}</td>
-                <td>{{ producto[3]}}</td>
-                <td>{{ producto[4]}}</td>
-                <td>{{ producto[5]}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 {% endblock %}
