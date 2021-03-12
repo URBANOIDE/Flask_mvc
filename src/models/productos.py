@@ -1,4 +1,4 @@
-from src.config.db import DB
+from src.config.globals as globals
 
 
 class ProductosModel():
@@ -26,5 +26,6 @@ class ProductosModel():
         cursor.execute(""" UPDATE productos SET nombre = ?, descripcion = ?, precio_compra = ?, precio_venta = ?, ganancia = ?, estado = ?  WHERE id = ?""",(nombre, descripcion, precio_compra, precio_venta, ganancia, estado, id,))
         
         cursor.close()
+    
         
         

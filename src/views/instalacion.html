@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html' %}
+
+{% block titulo %}
+    Falla conexion 
+{% endblock %}
+
+{% block contenido %}
+    <h1>ERROR BASE DE DATOS</h1>
+    <form action="{{ url_for('crear_producto') }}" method="POST">
+        <div class="mb-3">
+            <label for="nombre">Nombre Base de datos</label>
+            <input type="text" required class="form-control" id="db" name="db">
+        </div>
+        
+        <div class="mb-3">
+            <label for="precio_compra">Nombre de Usuario</label>
+            <input type="text" required class="form-control" id="user" name="user">
+        </div>
+    
+        <div class="mb-3">
+            <label for="precio_venta">Contraseña</label>
+            <input type="text" required class="form-control" id="password" name="password">
+        </div>
+    
+        <div class="mb-3">
+            <label for="ganancia">Servidor Base de datos</label>
+            <input type="text" required class="form-control" id="host" name="host">
+        </div>
+    
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+{% endblock %}
