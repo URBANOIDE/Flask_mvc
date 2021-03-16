@@ -1,33 +1,41 @@
-{% extends 'layouts/base.html' %}
-
-{% block titulo %}
-    Falla conexion 
-{% endblock %}
-
+{% extends 'layouts/base.html' %} 
+{% block titulo %} Instalación {% endblock %} 
 {% block contenido %}
-    <h1>ERROR BASE DE DATOS</h1>
-    <form action="{{ url_for('crear_producto') }}" method="POST">
-        <div class="mb-3">
-            <label for="nombre">Nombre Base de datos</label>
-            <input type="text" required class="form-control" id="db" name="db">
-        </div>
-        
-        <div class="mb-3">
-            <label for="precio_compra">Nombre de Usuario</label>
-            <input type="text" required class="form-control" id="user" name="user">
-        </div>
-    
-        <div class="mb-3">
-            <label for="precio_venta">Contraseña</label>
-            <input type="text" required class="form-control" id="password" name="password">
-        </div>
-    
-        <div class="mb-3">
-            <label for="ganancia">Servidor Base de datos</label>
-            <input type="text" required class="form-control" id="host" name="host">
-        </div>
-    
+<div class="row">
+    <div class="col-sm-12">
+        <h1>
+            Bienvenidos al proceso de instalación
+        </h1>
+    </div>
+</div>
 
-    <button type="submit" class="btn btn-primary">Guardar</button>
-</form>
+<div class="row">
+    <div class="col-sm-12">
+        <form action="{{ url_for('instalacion') }}" method="POST">
+            <div class="mb-3">
+                <label for="base_datos">Base de datos</label>
+                <input type="text" required class="form-control" id="base_datos" name="base_datos">
+            </div>
+            <div class="mb-3">
+                <label for="usuario">Usuario</label>
+                <input type="text" required class="form-control" id="usuario" name="usuario">
+            </div>
+            <div class="mb-3">
+                <label for="contrasena">Contraseña</label>
+                <input type="text" class="form-control" id="contrasena" name="contrasena">
+            </div>
+            <div class="mb-3">
+                <label for="host">Host</label>
+                <input type="text" required class="form-control" id="host" name="host">
+            </div>
+            <div class="mb-3">
+                <label for="puerto">Puerto</label>
+                <input type="text" required class="form-control" id="puerto" name="puerto">
+            </div>
+            <button class="btn btn-success">
+                Instalar
+            </button>
+        </form>
+    </div>
+</div>
 {% endblock %}
