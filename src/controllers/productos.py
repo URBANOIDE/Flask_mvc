@@ -2,11 +2,11 @@ from flask import render_template, request, redirect, url_for
 from src import app
 from src.models.productos import ProductosModel
 
-@app.route('/productos')
+@app.route('/index')
 def productos():
     productosModel =ProductosModel()
 
-    productos = productosModel.traerTodos()
+    bases = productosModel.mostrar()
    
     return render_template('productos/index.html', productos = productos)
 

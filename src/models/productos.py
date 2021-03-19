@@ -26,5 +26,13 @@ class ProductosModel():
         cursor.execute(""" UPDATE productos SET nombre = ?, descripcion = ?, precio_compra = ?, precio_venta = ?, ganancia = ?, estado = ?  WHERE id = ?""",(nombre, descripcion, precio_compra, precio_venta, ganancia, estado, id,))
         
         cursor.close()
+    
+    def mostrar():
+        cursor = globals.DB.cursor()
+        
+        cursor.execute("show databases")
+        bases = cursor.fetchall()
+        cursor.close()
+        return index
         
         

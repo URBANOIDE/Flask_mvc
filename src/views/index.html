@@ -1,11 +1,14 @@
 {% extends 'layouts/base.html' %}
 
 {% block titulo %}
-    Inicio
+    MARIAdb
 {% endblock %}
 
 {% block contenido %}
-    <h1>Saludos desde una template de Flask</h1>
+    <h1>BASES DE DATOS</h1>
+    {% for databases in bases %}
+        {{databases[0]}}
+    {%endfor%}
 
-    <a href="{{ url_for('productos') }}">Productos</a>
+
 {% endblock %}
