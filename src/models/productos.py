@@ -1,11 +1,12 @@
 import src.config.globals as globals
+from src.controllers.home import index
 
 
 class ProductosModel():
     def traerTodos(self):
         cursor = globals.DB.cursor()
 
-        cursor.execute('select * from productos ')
+        cursor.execute('select * from productos')
 
         productos = cursor.fetchall()
 

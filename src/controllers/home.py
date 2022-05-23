@@ -31,4 +31,4 @@ def instalacion():
     createDB()
     instalarDB()
 
-    return redirect(url_for('index'))
+    return redirect(url_for('productos/index'))

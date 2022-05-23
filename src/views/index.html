@@ -6,8 +6,9 @@
 
 {% block contenido %}
     <h1>BASES DE DATOS</h1>
+    <a href="{{ url_for('productos') }}">Mostrar los productos por ahora</a>    
     {% for databases in bases %}
-        {{databases[0]}}
+        {{databases[5]}}
     {%endfor%}
 
 

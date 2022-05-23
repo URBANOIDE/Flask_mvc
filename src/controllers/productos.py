@@ -6,7 +6,7 @@ from src.models.productos import ProductosModel
 def productos():
     productosModel =ProductosModel()
 
-    bases = productosModel.mostrar()
+    productos = productosModel.traerTodos()
    
     return render_template('productos/index.html', productos = productos)
 
@@ -16,7 +16,7 @@ def crear_producto():
    #y tambien me sirve para crear un nuevo producto
    #estos pasos se identifican con los metodos 
     if request.method == 'GET':
-       #mostramos el formulario de cracion
+       #mostramos el formulario de creacion
         return render_template('productos/crear.html')
 
     nombre = request.form.get('nombre')

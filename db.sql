@@ -1,3 +1,6 @@
+-- Volcando estructura de base de datos para asistencia_l4g
+CREATE DATABASE IF NOT EXISTS `basePrueba` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `basePrueba`;
 -- Volcando estructura para tabla flask_mvc.productos
 CREATE TABLE IF NOT EXISTS `productos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
