@@ -1,0 +1,58 @@
+{% extends 'layouts/base.html' %} {% block titulo %} Marcas {% endblock %}
+{% block contenido %}
+<center>
+    <h1>Listado de Marcas</h1>
+</center>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Marcas</a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('index') }}">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('crear_marca') }}">Agregar Marca</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+  
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Empresa</th>
+            <th>Nombre de marca</th>
+            <th>Pais de la marca</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for marca in marcas %}
+        <tr>
+            <td>{{ marca[0] }}</td>
+            <td>{{ marca[1] }}</td>
+            <td>{{ marca[2] }}</td>
+            <td>{{ marca[3] }}</td>
+            <td>
+                <a href="{{ url_for('editar_marca', id=marca[0])}}" style="color: green">
+                    <span class="material-icons">
+                        drive_file_rename_outline
+                    </span>
+                </a>
+            </td>
+            <td>
+                <a href="{{ url_for('eliminar_marca', id=marca[0])}}" style="color: red">
+                    <span class="material-icons">
+                        delete
+                    </span>
+                </a>
+            </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+{% endblock %}

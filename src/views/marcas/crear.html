@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html' %} 
+{% block titulo %} Crear Marca {% endblock %} 
+
+{% block contenido %}
+<h1>Crear Marca</h1>
+<a href="{{ url_for('marcas') }}">volver</a>
+
+<form action="{{ url_for('crear_marca') }}" method="POST">
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="empresa">Nombre de Empresa</label>
+            <select class="form-select" required id="empresa" name="empresa">
+                <option selected value="">Seleccione (empresa)</option>
+                {% for nombreEmpresa in nombreEmpresas%}
+                    <option value="{{nombreEmpresa[0]}}">{{ nombreEmpresa[0] }}</option>
+                {%endfor%}
+            </select>
+        </div>
+    </div>
+    
+    
+    
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="marca">Marca</label>
+            <input type="text" maxlength="50" placeholder="Proporsione el nombre de la marca" required class="form-control" id="marca" name="marca">
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="nacionalidad">Pais de la marca</label>
+            <input type="text" maxlength="50" placeholder="Digite el nombre del pais" required class="form-control" id="nacionalidad" name="nacionalidad">
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-3 mb-3">
+            <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black "; >Guardar</button>
+        </div>
+    </div>
+</form>
+
+{% endblock%}

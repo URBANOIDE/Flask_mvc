@@ -1,0 +1,41 @@
+{% extends 'layouts/base.html' %} 
+{% block titulo %} Crear Empresa {% endblock %} 
+
+{% block contenido %}
+<h1>Crear Empresa</h1>
+<a href="{{ url_for('empresas') }}">volver</a>
+
+<form action="{{ url_for('crear_empresa') }}" method="POST">
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="empresa">Nombre de Empresa</label>
+            <input type="text" maxlength="50" placeholder="Proporsione el nombre de la empresa" required class="form-control" id="empresa" name="empresa">
+        </div>
+    </div>
+    
+    
+    
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="nit">Nit</label>
+            <input type="text" maxlength="50" placeholder="Digite el nit de la empresa" required class="form-control" id="nit" name="nit">
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="nacionalidad">Pais de la empresa</label>
+            <input type="text" maxlength="50" placeholder="Digite el nombre del pais" required class="form-control" id="nacionalidad" name="nacionalidad">
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-3 mb-3">
+            <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black "; >Guardar</button>
+        </div>
+    </div>
+</form>
+
+{% endblock%}

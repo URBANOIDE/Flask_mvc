@@ -1,0 +1,66 @@
+{% extends 'layouts/base.html' %} {% block titulo %} Proveedores {% endblock %}
+{% block contenido %}
+<center>
+    <h1>Listado de Proveedores</h1>
+</center>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Proveedores</a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('index') }}">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('crear_proveedor') }}">Crear Proveedor</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+  
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Empresa</th>
+            <th>Identificación</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Telefono</th>
+            <th>Direccion</th>
+            <th>Genero</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for proveedor in proveedores %}
+        <tr>
+            <td>{{ proveedor[0] }}</td>
+            <td>{{ proveedor[1] }}</td>
+            <td>{{ proveedor[2] }}</td>
+            <td>{{ proveedor[3] }}</td>
+            <td>{{ proveedor[4] }}</td>
+            <td>{{ proveedor[5] }}</td>
+            <td>{{ proveedor[6] }}</td>
+            <td>{{ proveedor[7] }}</td>
+            <td>
+                <a href="{{ url_for('editar_proveedor', id=proveedor[0])}}" style="color: green">
+                    <span class="material-icons">
+                        drive_file_rename_outline
+                    </span>
+                </a>
+            </td>
+            <td>
+                <a href="{{ url_for('eliminar_proveedor', id=proveedor[0])}}" style="color: red">
+                    <span class="material-icons">
+                        delete
+                    </span>
+                </a>
+            </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+{% endblock %}

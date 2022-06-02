@@ -1,0 +1,55 @@
+{% extends 'layouts/base.html' %} 
+{% block titulo %} Editar Cliente {% endblock %} 
+
+{% block contenido %}
+<h1>Editar Cliente</h1>
+<a href="{{ url_for('clientes') }}">volver</a>
+<Center>
+<form method="POST">
+    <div class="row">
+        <div class="col-5 mb-3">
+            <select class="form-select" required id="empresa" name="empresa">
+                <option selected value="">{{empresa}} (Seleccione)</option>
+                {% for nombreEmpresa in nombreEmpresas%}
+                    <option value="{{nombreEmpresa[0]}}">{{ nombreEmpresa[0] }}</option>
+                {%endfor%}
+            </select>
+        </div>
+        <div class="col-5 mb-3">
+            <input type="number" value="{{identificacion}}" placeholder="Identificacion" required class="form-control" id="identificacion" name="identificacion">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-5 mb-3">
+            <input type="text" maxlength="50" value="{{nombres}}" placeholder="Nombres" required class="form-control" id="nombres" name="nombres">
+        </div>
+
+        <div class="col-5 mb-3">
+            <input type="text" maxlength="50" value="{{apellidos}}" placeholder="Apellidos" required class="form-control" id="apellidos" name="apellidos">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-5 mb-3">
+            <input type="number" value="{{telefono}}" placeholder="Telefono" required class="form-control" id="telefono" name="telefono">
+        </div>
+    
+        <div class="col-5 mb-3">
+            <input type="text" maxlength="50" value="{{direccion}}" placeholder="Direccion" required class="form-control" id="direccion" name="direccion">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 mb-3">
+            <select class="form-select" required id="genero" name="genero">
+                <option selected value="">{{genero}} (Seleccione)</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+            </select>
+        </div>
+        <div class="col mb-3">
+            <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black "; >Guardar</button>            
+        </div>
+    </div>
+</form>
+{% endblock%}

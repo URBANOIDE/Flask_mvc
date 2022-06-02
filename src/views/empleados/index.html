@@ -1,0 +1,66 @@
+{% extends 'layouts/base.html' %} {% block titulo %} Empleados {% endblock %}
+{% block contenido %}
+<center>
+    <h1>Listado de Empleados</h1>
+</center>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Empleados</a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('index') }}">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('crear_empleado') }}">Agregar Empleado</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+  
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cargo</th>
+            <th>Identificación</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Telefono</th>
+            <th>Direccion</th>
+            <th>Genero</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for empleado in empleados%}
+        <tr>
+            <td>{{ empleado[0] }}</td>
+            <td>{{ empleado[1] }}</td>
+            <td>{{ empleado[2] }}</td>
+            <td>{{ empleado[3] }}</td>
+            <td>{{ empleado[4] }}</td>
+            <td>{{ empleado[5] }}</td>
+            <td>{{ empleado[6] }}</td>
+            <td>{{ empleado[7] }}</td>
+            <td>
+                <a href="{{ url_for('editar_empleado', id=empleado[0])}}" style="color: green">
+                    <span class="material-icons">
+                        drive_file_rename_outline
+                    </span>
+                </a>
+            </td>
+            <td>
+                <a href="{{ url_for('eliminar_empleado', id=empleado[0])}}" style="color: red">
+                    <span class="material-icons">
+                        delete
+                    </span>
+                </a>
+            </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+{% endblock %}

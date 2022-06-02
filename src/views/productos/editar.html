@@ -7,42 +7,50 @@
 
 
 <form method="POST">
-    <div class="mb-3">
-        <label for="nombre">Nombre</label>
-        <input type="text" required class="form-control" id="nombre" name="nombre">
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="proveedor">Proveedor</label>
+            <select class="form-select" required id="provedor" name="provedor">
+                <option selected value="">{{provedor}}</option>
+                {% for nombreProveedor in nombreProveedores%}
+                    <option value="{{nombreProveedor[0]}}">{{ nombreProveedor[0] }}</option>
+                {%endfor%}
+            </select>
+        </div>
+        <div class="col-5 mb-3">
+            <label for="marca">Marca</label>
+            <select class="form-select" required id="marca" name="marca">
+                <option selected value="">{{ marca }}</option>
+                {% for nombreMarca in nombreMarcas%}
+                    <option value="{{nombreMarca[0]}}">{{ nombreMarca[0] }}</option>
+                {%endfor%}
+            </select>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="descripcion">Descripcion</label>
-        <textarea rows="4" required class="form-control" 
-            id="descripcion" 
-            name="descripcion"></textarea>
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="precio_compra">Producto</label>
+            <input type="text" maxlength="50" placeholder="Digite el nombre del producto" value="{{producto}}" required class="form-control" id="producto" name="producto">
+        </div>
+        <div class="col-5 mb-3">
+            <label for="precio_venta">Precio de compra</label>
+            <input type="number" placeholder="Digite el precio de compra" value="{{precio_compra}}" required class="form-control" id="precio_compra" name="precio_compra">
+        </div>        
     </div>
-    
-    <div class="mb-3">
-        <label for="precio_compra">Precio de compra</label>
-        <input type="number" required class="form-control" id="precio_compra" name="precio_compra">
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="precio_venta">Precio de venta</label>
+            <input type="number" placeholder="Digite el precio de venta" value="{{precio_venta}}" required class="form-control" id="precio_venta" name="precio_venta">
+        </div>
+        <div class="col-5 mb-3">
+            <div class="mb-3">
+                <label for="ganancia">Ganancia (%)</label>
+                <input type="number" value="{{ganancia}}" required class="form-control" id="ganancia" name="ganancia">
+            </div>
+        </div>
     </div>
 
-    <div class="mb-3">
-        <label for="precio_venta">Precio de venta</label>
-        <input type="number" required class="form-control" id="precio_venta" name="precio_venta">
-    </div>
-
-    <div class="mb-3">
-        <label for="ganancia">Ganancia (%)</label>
-        <input type="number" required class="form-control" id="ganancia" name="ganancia">
-    </div>
-
-    <div class="mb-3">
-        <label for="estado">Estado de producto</label>
-        <select class="form-select" required id="estado" name="estado">
-            <option selected value="">Selecione una opción</option>
-            <option value="1">Activo</option>
-            <option value="0">Inactivo</option>
-        </select>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black ";>Guardar</button>
 </form>
 
 <script>

@@ -1,0 +1,45 @@
+{% extends 'layouts/base.html' %} 
+{% block titulo %} Editar Empresa {% endblock %} 
+
+{% block contenido %}
+<h1>Editar Empresa</h1>
+<a href="{{ url_for('empresas') }}">volver</a>
+
+
+<form method="POST">
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="empresa">Nombre de Empresa</label>
+            <input type="text" maxlength="50" value="{{empresa}}" placeholder="Digite el nombre de la empresa" required class="form-control" id="empresa" name="empresa">
+        </div>
+    </div>
+    
+    
+    
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="nit">Nit</label>
+            <input type="text" maxlength="50" value="{{nit}}" placeholder="Digite el nombre de la marca" required class="form-control" id="nit" name="nit">
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="nacionalidad">Pais de la empresa</label>
+            <input type="text" maxlength="50" value="{{nacionalidad}}" placeholder="Proporsione el pais de la marca" required class="form-control" id="nacionalidad" name="nacionalidad">
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-3 mb-3">
+            <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black "; >Guardar</button>
+        </div>
+    </div>
+
+
+    
+</form>
+
+{% endblock%}

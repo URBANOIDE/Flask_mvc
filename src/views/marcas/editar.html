@@ -1,0 +1,50 @@
+{% extends 'layouts/base.html' %} 
+{% block titulo %} Editar Marca {% endblock %} 
+
+{% block contenido %}
+<h1>Editar Marca</h1>
+<a href="{{ url_for('marcas') }}">volver</a>
+
+
+<form method="POST">
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="empresa">Nombre de Empresa</label>
+            <select class="form-select" required id="empresa" name="empresa">
+                <option selected value="">{{empresa}} (Seleccione)</option>
+                {% for nombreEmpresa in nombreEmpresas%}
+                    <option value="{{nombreEmpresa[0]}}">{{ nombreEmpresa[0] }}</option>
+                {%endfor%}
+            </select>
+        </div>
+    </div>
+    
+    
+    
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="marca">Marca</label>
+            <input type="text" maxlength="50" value="{{marcas}}" placeholder="Digite el nombre de la marca" required class="form-control" id="marca" name="marca">
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="nacionalidad">Pais de la marca</label>
+            <input type="text" maxlength="50" value="{{nacionalidad}}" placeholder="Proporsione el pais de la marca" required class="form-control" id="nacionalidad" name="nacionalidad">
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-3 mb-3">
+            <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black "; >Guardar</button>
+        </div>
+    </div>
+
+
+    
+</form>
+
+{% endblock%}
