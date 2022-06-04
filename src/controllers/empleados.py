@@ -1,6 +1,6 @@
 import marshal
 from xml.dom.minidom import Identified
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from src import app
 from src.models.empleados import EmpleadosModel
 
@@ -36,6 +36,7 @@ def crear_empleado():
     telefono_empleado = request.form.get('telefono')
     direccion_empleado = request.form.get('direccion')
     sexo_empleado = request.form.get('genero')
+    password = request.form.get('password')
       
     empleadosModel = EmpleadosModel()
     #Traemos el id del cargo
@@ -43,7 +44,7 @@ def crear_empleado():
     for e in id_cargo_empleado:
         id_cargo_empleado=e[0]
 
-    empleadosModel.crear(id_cargo_empleado, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado)    
+    empleadosModel.crear(id_cargo_empleado, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado, password)    
     
     #aca es la cracion del producto
     return redirect(url_for('empleados'))
@@ -88,8 +89,12 @@ def editar_empleado(id):
             genero="Femenino"
         else:
             genero="Masculino"
+        #password
+        password = empleadosModel.traerPassword(id)
+        for p in password:
+            password = p[0]
         #mostramos el formulario de edicion
-        return render_template('empleados/editar.html', nombreCargos=nombreCargos, cargo=cargo, identificacion=identificacion, genero=genero, nombres=nombres, apellidos=apellidos, telefono=telefono, direccion=direccion)
+        return render_template('empleados/editar.html', nombreCargos=nombreCargos, cargo=cargo, identificacion=identificacion, genero=genero, nombres=nombres, apellidos=apellidos, telefono=telefono, direccion=direccion, password=password)
 
     nombreCargo = request.form.get('cargo')
     cedula_empleado = request.form.get('identificacion')
@@ -98,6 +103,7 @@ def editar_empleado(id):
     telefono_empleado = request.form.get('telefono')
     direccion_empleado = request.form.get('direccion')
     sexo_empleado = request.form.get('genero')
+    password = request.form.get('password')
       
     empleadosModel = EmpleadosModel()
     #Traemos el id del cargo
@@ -105,7 +111,7 @@ def editar_empleado(id):
     for e in id_cargo_empleado:
         id_cargo_empleado=e[0]
         
-    empleadosModel.editar(id, id_cargo_empleado, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado)
+    empleadosModel.editar(id, id_cargo_empleado, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado, password)
     
     #aca es la creacion del producto
     return redirect(url_for('empleados'))

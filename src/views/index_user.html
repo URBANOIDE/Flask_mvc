@@ -1,0 +1,57 @@
+{% extends 'layouts/base.html' %}
+
+{% block titulo %}
+    Papeleria KELI
+{% endblock %}
+
+{% block contenido %}
+<center>
+    <nav class="navbar navbar-center navbar-dark bg-dark mb-3 col-7">
+        <div class="navbar-collapse">
+            <a class="navbar-brand"><h1>PAPELERIA KELI</h1></a>
+            <a class="navbar-brand">{{session['administrador']}} ({{session['usuario']}})</a>
+        </div>
+        <div class="navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <a class="nav-link active" aria-current="page">Administrar</a>
+                <li class="nav-item">
+                    <p>
+                        <a class="btn btn-primary" href="{{ url_for('clientes') }}" role="button" style="background-color: green; border-color:black; color: black ">
+                            <b>Clientes</b>
+                        </a>
+                    </p>
+                    <p>
+                        <a class="btn btn-primary" href="{{ url_for('productos') }}" role="button" style="background-color: green; border-color:black; color: black ">
+                            <b>Productos</b>
+                        </a>
+                        <a class="btn btn-primary" href="{{ url_for('marcas') }}" role="button" style="background-color: green; border-color:black; color: black ">
+                            <b>Marcas</b>
+                        </a>
+                        <a class="btn btn-primary" href="{{ url_for('empresas') }}" role="button" style="background-color: green; border-color:black; color: black ">
+                            <b>Empresas</b>
+                        </a>
+                    </p>
+                    <p>
+                        
+                        <a href="{{ url_for('ventas') }}" style="color: blue">
+                            <span class="material-icons", opsz="48">
+                               add_shopping_cart
+                            </span>                        
+                        </a>
+                        <br>
+                        <a style="color: white">
+                            Registrar venta
+                        </a>
+                    </p>
+                    
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('logout') }}" style="color: green">Cerrar Sesion</a> 
+                </li>
+               
+            </ul>
+        </div>
+    </nav>
+</center>
+
+{% endblock %}

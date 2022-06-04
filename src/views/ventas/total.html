@@ -1,0 +1,59 @@
+{% extends 'layouts/base.html' %} 
+{% block titulo %} Cantidad de producto {% endblock %} 
+
+{% block contenido %}
+<h1>Seleccionar Cantidad del producto</h1>
+<a href="{{ url_for('user') }}">volver</a>
+
+<form method="POST">
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="producto">Producto</label>
+            <input type="text" value="{{producto}}" required class="form-control" id="producto" name="producto" disabled>
+        </div>
+        <div class="col-5 mb-3">
+            <label for="precio">Precio</label>
+            <input type="text" value="{{precio}}" required class="form-control" id="precio" name="precio" disabled>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label for="cantidad">Cantidad</label>
+            <input type="number" placeholder="Digite la cantidad del producto a vender" required class="form-control" id="cantidad" name="cantidad">
+        </div>
+        <div class="col-5 mb-3">
+            <label for="total">Total</label>
+            <input type="number" placeholder="Total" required class="form-control" id="total" name="total">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5 mb-3">
+            <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black "; >IR</button>            
+        </div>
+    </div>
+</form>
+<script>
+    let inputPrecio = document.querySelector('#precio')
+    let inputCantidad = document.querySelector('#cantidad')
+    let inputTotal = document.getElementById('total')
+
+    inputCantidad.addEventListener('change', cambioCantidad)
+    function cambioCantidad(e){
+        let cantidad = parseInt(inputCantidad.value)
+        let precio = parseInt(inputPrecio.value)
+        let total = cantidad*precio
+        total=parseInt(total)
+
+        inputTotal.value = total
+
+    }
+    inputTotal.addEventListener('change', cambioTotal)
+    function cambioTotal(e){
+        let precio = parseInt(inputPrecio.value)
+        let total = parseInt(inputTotal.value)
+        let cantidad = total/precio
+        inputCantidad.value = cantidad
+    }
+</script>
+
+{% endblock%}

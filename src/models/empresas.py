@@ -40,13 +40,7 @@ class EmpresasModel():
 
 
 
-    #al borrar una marca tambien se eliminará el cargo, cliente, marca
-    def eliminarCargoEmpresa(self, id):
-        cursor = DB.cursor()
-
-        cursor.execute("""DELETE FROM cargo WHERE id_empresa_cargo = ?""", (id,))
-
-        cursor.close()
+    
     def eliminarClienteEmpresa(self, id):
         cursor = DB.cursor()
 

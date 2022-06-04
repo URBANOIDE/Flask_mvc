@@ -8,7 +8,7 @@ class CargosModel():
     def traerTodos(self):
         cursor = DB.cursor()
 
-        cursor.execute('SELECT id_cargo, nombre_empresa, nombre, sueldo FROM cargo INNER JOIN empresa ON cargo.id_empresa_cargo = empresa.id_empresa ORDER BY id_cargo ASC')
+        cursor.execute('SELECT * FROM cargo ORDER BY id_cargo ASC')
 
         cargos = cursor.fetchall()
 
@@ -23,18 +23,18 @@ class CargosModel():
 
         cursor.close()
 
-    def crear(self, id_empresa_cargo, nombre, sueldo):
+    def crear(self, nombre, sueldo):
         cursor = DB.cursor()
 
-        cursor.execute('INSERT INTO cargo (id_empresa_cargo, nombre, sueldo) values(?,?,?)',(id_empresa_cargo, nombre, sueldo))
+        cursor.execute('INSERT INTO cargo (nombre, sueldo) values(?,?)',(nombre, sueldo))
 
         cursor.close()
         
-    def editar(self, id, id_empresa_cargo, nombre, sueldo):
+    def editar(self, id, nombre, sueldo):
         
         cursor =DB.cursor()
 
-        cursor.execute("""UPDATE cargo SET id_empresa_cargo = ?, nombre = ?, sueldo = ?  WHERE id_cargo = ? """,(id_empresa_cargo, nombre, sueldo,id,))
+        cursor.execute("""UPDATE cargo SET nombre = ?, sueldo = ?  WHERE id_cargo = ? """,(nombre, sueldo,id,))
         
         cursor.close()
 
@@ -73,18 +73,7 @@ class CargosModel():
     ##################
     #Requerimientos para editar, traer los datos ingresados para mostrar en el formulario y hacer su edicion
     ##################
-    #Empresa
-    def traerEmpresaSeleccionada(self, id):
-        
-        cursor = DB.cursor()
-
-        cursor.execute("""SELECT nombre_empresa FROM cargo INNER JOIN empresa ON cargo.id_empresa_cargo = empresa.id_empresa WHERE id_cargo  = ?""", (id,))
-
-        empresa = cursor.fetchall()
-
-        cursor.close()
-
-        return empresa
+    
     #Cargo
     def traerCargo(self, id):
         

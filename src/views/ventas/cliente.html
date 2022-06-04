@@ -1,0 +1,43 @@
+{% extends 'layouts/base.html' %} 
+{% block titulo %} Seleccionar Cliente {% endblock %} 
+
+{% block contenido %}
+<center>
+    <nav class="navbar navbar-center navbar-dark bg-dark mb-3 col-5">
+        <div class="container-fluid">
+            <a class="navbar-brand">SELECCIONE EL CLIENTE</h1></a>
+            <div class="navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('user') }}">Volver</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <form method="POST">
+                        <div class="mb-3 col-6">
+                            <label for="codigo" style="color: white;">Codigo factura</label>
+                            <input type="text" maxlength="50" value="{{codigo}}" placeholder="Codigo" required class="form-control" id="codigo" name="codigo">
+                        </div>
+                    
+                        <div class="mb-3 col-6">
+                            <label for="cliente" style="color: white;" >Cliente</label>
+                            <select class="form-select" required id="cliente" name="cliente">
+                            <option selected value="">Seleccione (Cliente)</option>
+                            {% for cliente in clientes%}
+                                <option value="{{cliente[0]}}">{{ cliente[0] }}</option>
+                            {%endfor%}
+                        </select>
+                        </div>
+                    
+                        <button type="submit" class="btn btn-primary" style="background-color:green">ENTRAR</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    </center>
+{% endblock%}

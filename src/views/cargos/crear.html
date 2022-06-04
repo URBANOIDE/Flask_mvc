@@ -5,20 +5,7 @@
 <h1>Crear Cargo</h1>
 <a href="{{ url_for('cargos') }}">volver</a>
 
-<form action="{{ url_for('crear_cargo') }}" method="POST">
-    <div class="row">
-        <div class="col-5 mb-3">
-            <label for="empresa">Nombre de Empresa</label>
-            <select class="form-select" required id="empresa" name="empresa">
-                <option selected value="">Seleccione (empresa)</option>
-                {% for nombreEmpresa in nombreEmpresas%}
-                    <option value="{{nombreEmpresa[0]}}">{{ nombreEmpresa[0] }}</option>
-                {%endfor%}
-            </select>
-        </div>
-    </div>
-    
-    
+<form action="{{ url_for('crear_cargo') }}" method="POST">   
     
     <div class="row">
         <div class="col-5 mb-3">

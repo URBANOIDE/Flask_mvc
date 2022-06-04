@@ -11,7 +11,7 @@
         <div class="col-5 mb-3">
             <label for="proveedor">Proveedor</label>
             <select class="form-select" required id="provedor" name="provedor">
-                <option selected value="">{{provedor}}</option>
+                <option selected value="">{{provedor}} (seleccione)</option>
                 {% for nombreProveedor in nombreProveedores%}
                     <option value="{{nombreProveedor[0]}}">{{ nombreProveedor[0] }}</option>
                 {%endfor%}
@@ -20,7 +20,7 @@
         <div class="col-5 mb-3">
             <label for="marca">Marca</label>
             <select class="form-select" required id="marca" name="marca">
-                <option selected value="">{{ marca }}</option>
+                <option selected value="">{{ marca }} (seleccione)</option>
                 {% for nombreMarca in nombreMarcas%}
                     <option value="{{nombreMarca[0]}}">{{ nombreMarca[0] }}</option>
                 {%endfor%}

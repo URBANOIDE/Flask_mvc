@@ -23,23 +23,16 @@ def eliminar_cargo(id):
 @app.route('/cargos/crear', methods =['GET', 'POST'])
 def crear_cargo():
     if request.method == 'GET':
-        #TRAER LAS EMPRESAS PARA HACERLOS SELECCIONABLES AL CREAR UN PRODUCTO
         cargosModel = CargosModel()
-        nombreEmpresas = cargosModel.traerEmpresas()
         #mostramos el formulario de creacion
-        return render_template('cargos/crear.html', nombreEmpresas = nombreEmpresas)
+        return render_template('cargos/crear.html')
 
-    nombreEmpresa = request.form.get('empresa')
     nombre = request.form.get('cargo')
     sueldo = request.form.get('sueldo')
       
     cargosModel = CargosModel()
-    #Traemos el id de la empresa
-    id_empresa_cargo = cargosModel.traerIdEmpresa(nombreEmpresa)
-    for e in id_empresa_cargo:
-        id_empresa_cargo=e[0]
 
-    cargosModel.crear(id_empresa_cargo, nombre, sueldo)    
+    cargosModel.crear(nombre, sueldo)    
     
     #aca es la cracion del producto
     return redirect(url_for('cargos'))
@@ -50,11 +43,7 @@ def editar_cargo(id):
     if request.method == 'GET':
         ########TRAER LOS CARGOS PARA HACERLOS SELECCIONABLES AL EDITAR UN PRODUCTO
         cargosModel = CargosModel()
-        nombreEmpresas = cargosModel.traerEmpresas()
-        empresa = cargosModel.traerEmpresaSeleccionada(id)
-        for t in empresa:
-            empresa =t[0]
-        #
+        #cargo
         cargo = cargosModel.traerCargo(id)
         for m in cargo:
             cargo =m[0]
@@ -63,18 +52,13 @@ def editar_cargo(id):
         for n in sueldo:
             sueldo =n[0]
         #mostramos el formulario de edicion
-        return render_template('cargos/editar.html', nombreEmpresas=nombreEmpresas, empresa=empresa, cargo=cargo, sueldo=sueldo)
+        return render_template('cargos/editar.html',cargo=cargo, sueldo=sueldo)
 
-    nombreEmpresa = request.form.get('empresa')
     nombre = request.form.get('cargo')
     sueldo = request.form.get('sueldo')
       
     cargosModel = CargosModel()
-    #Traemos el id de la empresa
-    id_empresa_cargo = cargosModel.traerIdEmpresa(nombreEmpresa)
-    for e in id_empresa_cargo:
-        id_empresa_cargo=e[0]
         
-    cargosModel.editar(id, id_empresa_cargo, nombre, sueldo)
+    cargosModel.editar(id, nombre, sueldo)
     #aca es la creacion del producto
     return redirect(url_for('cargos'))

@@ -1,0 +1,40 @@
+{% extends 'layouts/base.html' %} 
+{% block titulo %} LOGIN {% endblock %} 
+
+{% block contenido %}
+<center>
+<nav class="navbar navbar-center navbar-dark bg-dark mb-3 col-5">
+    <div class="container-fluid">
+        <a class="navbar-brand">INGRESO EMPLEADOS  {{ error }}</h1></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Volver</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <form action="{{ url_for('login_user') }}" method="POST">
+                    <div class="mb-3 col-6">
+                        <input type="text" maxlength="50" required class="form-control" id="usuario" name="usuario" placeholder="Usuario">
+                    </div>
+                
+                    <div class="mb-3 col-6">
+                        <input type="password" maxlength="50" required class="form-control" id="password" name="password" placeholder="Contraseña">
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary" style="background-color:green">ENTRAR</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+</center>
+{% endblock%}

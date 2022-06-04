@@ -1,7 +1,7 @@
 import marshal
 from re import M
 from xml.dom.minidom import Identified
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from src import app
 from src.models.empresas import EmpresasModel
 
@@ -14,7 +14,6 @@ def empresas():
 @app.route('/empresas/eliminado/<int:id>', methods=['GET', 'POST'])
 def eliminar_empresa(id):
     empresasModel = EmpresasModel()
-    empresasModel.eliminarCargoEmpresa(id)
     empresasModel.eliminarClienteEmpresa(id)
     empresasModel.eliminarMarcaEmpresa(id)
     empresasModel.eliminar(id)

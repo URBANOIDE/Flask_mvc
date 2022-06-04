@@ -40,17 +40,18 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-3 mb-3">
+        <div class="col-5 mb-3">
             <select class="form-select" required id="genero" name="genero">
                 <option selected value="">Seleccione (Genero)</option>
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
             </select>
         </div>
-        <div class="col mb-3">
-            <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black "; >Guardar</button>            
+        <div class="col-5 mb-3">
+            <input type="text" maxlength="50" placeholder="Contraseña para acceder a la pagina" required class="form-control" id="password" name="password">
         </div>
     </div>
+    <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black "; >Guardar</button>
 </form>
 
 {% endblock%}

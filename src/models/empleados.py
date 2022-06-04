@@ -8,7 +8,7 @@ class EmpleadosModel():
     def traerTodos(self):
         cursor = DB.cursor()
 
-        cursor.execute('SELECT id_empleado, nombre, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado FROM empleados INNER JOIN cargo ON empleados.id_cargo_empleado = cargo.id_cargo ORDER BY id_empleado ASC')
+        cursor.execute('SELECT id_empleado, nombre, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado, password FROM empleados INNER JOIN cargo ON empleados.id_cargo_empleado = cargo.id_cargo ORDER BY id_empleado ASC')
 
         empleados = cursor.fetchall()
 
@@ -23,18 +23,18 @@ class EmpleadosModel():
 
         cursor.close()
 
-    def crear(self, id_cargo_empleado, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado):
+    def crear(self, id_cargo_empleado, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado, password):
         cursor = DB.cursor()
 
-        cursor.execute('INSERT INTO empleados (id_cargo_empleado, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado) values(?,?,?,?,?,?,?)',(id_cargo_empleado, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado))
+        cursor.execute('INSERT INTO empleados (id_cargo_empleado, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado, password) values(?,?,?,?,?,?,?,?)',(id_cargo_empleado, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado, password))
 
         cursor.close()
         
-    def editar(self, id, id_cargo_empleado, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado):
+    def editar(self, id, id_cargo_empleado, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado, password):
         
         cursor =DB.cursor()
 
-        cursor.execute("""UPDATE empleados SET id_cargo_empleado = ?, cedula_empleado =?, nombres_empleado = ?, apellidos_empleado = ?, telefono_empleado = ?, direccion_empleado = ?, sexo_empleado = ?  WHERE id_empleado = ? """,(id_cargo_empleado, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado,id,))
+        cursor.execute("""UPDATE empleados SET id_cargo_empleado = ?, cedula_empleado =?, nombres_empleado = ?, apellidos_empleado = ?, telefono_empleado = ?, direccion_empleado = ?, sexo_empleado = ?, password = ? WHERE id_empleado = ? """,(id_cargo_empleado, cedula_empleado, nombres_empleado, apellidos_empleado, telefono_empleado, direccion_empleado, sexo_empleado, password, id,))
         
         cursor.close()
 
@@ -175,3 +175,15 @@ class EmpleadosModel():
         cursor.close()
 
         return genero
+    #password
+    def traerPassword(self, id):
+        cursor = DB.cursor()
+
+        cursor.execute("""SELECT password FROM empleados WHERE id_empleado = ?""", (id,))
+
+        password = cursor.fetchall()
+
+        cursor.close()
+
+        return password
+

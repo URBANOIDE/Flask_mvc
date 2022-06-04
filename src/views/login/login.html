@@ -1,0 +1,36 @@
+{% extends 'layouts/base.html' %}
+{% block titulo %} LOGIN {% endblock %}
+
+{% block contenido %}
+<center>
+<nav class="navbar navbar-center navbar-dark bg-dark mb-3 col-7">
+    <div class="navbar-collapse">
+        <a class="navbar-brand"><h1>PAPELERIA KELI</h1></a>
+    </div>
+    <div class="navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                {% if session['usuario'] %}
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('logout') }}">Cerrar Sesion</a>
+                {% else %}
+                    <a class="nav-link active" aria-current="page">Iniciar Sesion como:</a>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login_admin') }}">Administrador</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login_user') }}">Empleado</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: green">© 2022 DIANA/ALBEIRO/HUGO</a>
+                    </li>
+                {% endif %}
+            </li>
+           
+        </ul>
+    </div>
+</nav>
+</center>
+
+
+
+{% endblock%}

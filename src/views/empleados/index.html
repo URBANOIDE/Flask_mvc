@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="{{ url_for('index') }}">Inicio</a>
+          <a class="nav-link" href="{{ url_for('admin') }}">Inicio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('crear_empleado') }}">Agregar Empleado</a>
@@ -29,6 +29,7 @@
             <th>Telefono</th>
             <th>Direccion</th>
             <th>Genero</th>
+            <th>Contraseña</th>
             <th>Editar</th>
             <th>Eliminar</th>
         </tr>
@@ -44,6 +45,7 @@
             <td>{{ empleado[5] }}</td>
             <td>{{ empleado[6] }}</td>
             <td>{{ empleado[7] }}</td>
+            <td>{{ empleado[8] }}</td>
             <td>
                 <a href="{{ url_for('editar_empleado', id=empleado[0])}}" style="color: green">
                     <span class="material-icons">
@@ -52,7 +54,7 @@
                 </a>
             </td>
             <td>
-                <a href="{{ url_for('eliminar_empleado', id=empleado[0])}}" style="color: red">
+                <a href="{{ url_for('eliminar_empleado', id=empleado[0])}}" style="color: red" onclick="alert('Las ventas que halla realizado el empleado tambien fueron eliminadas')">
                     <span class="material-icons">
                         delete
                     </span>
