@@ -3,7 +3,6 @@
 
 {% block contenido %}
 <h1>Crear Producto</h1>
-<a href="{{ url_for('productos') }}">volver</a>
 
 <form action="{{ url_for('crear_producto') }}" method="POST">
     <div class="row">
@@ -47,7 +46,8 @@
             <input type="number" required class="form-control" id="ganancia" name="ganancia">
         </div>
     </div>
-
+    
+    <input type="button" class="btn btn-primary" href="" value="Volver" onClick="history.go(-1);">
     <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black ";>Guardar</button>
 </form>
 

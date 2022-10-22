@@ -3,7 +3,6 @@
 
 {% block contenido %}
 <h1>Editar Proveedor</h1>
-<a href="{{ url_for('proveedores') }}">volver</a>
 
 
 <form method="POST">
@@ -58,12 +57,9 @@
                     <option value="F">Femenino</option>
             </select>
         </div>
-        <div class="col-3 mb-3">
-            <button type="submit" class="btn btn-primary">Guardar</button>
-        </div>
     </div>
-
-
+    <input type="button" class="btn btn-primary" href="" value="Volver" onClick="history.go(-1);">
+    <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black ">Guardar</button>
     
 </form>
 

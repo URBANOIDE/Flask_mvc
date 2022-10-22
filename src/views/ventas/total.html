@@ -3,7 +3,6 @@
 
 {% block contenido %}
 <h1>Seleccionar Cantidad del producto</h1>
-<a href="{{ url_for('user') }}">volver</a>
 
 <form method="POST">
     <div class="row">
@@ -28,7 +27,8 @@
     </div>
     <div class="row">
         <div class="col-5 mb-3">
-            <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black "; >IR</button>            
+            <input type="button" class="btn btn-primary" value="Volver" onClick="history.go(-1);"> 
+            <button type="submit" class="btn btn-primary" style="background-color: green; border-color:green; color:black "; >IR</button>         
         </div>
     </div>
 </form>

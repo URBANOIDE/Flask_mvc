@@ -1,3 +1,4 @@
+from xml.dom.minidom import Identified
 from flask import render_template, request, redirect, url_for, session
 from src import app
 import random
@@ -59,6 +60,37 @@ def user():
 @app.route('/cerrar')
 def logout():
    session.pop('usuario', None)
+   session.pop('administradorA', None)
+   session.pop('administrador', None)
    session.pop('id', None)
 
+   return redirect(url_for('index'))
+
+@app.route('/entrar/admin/password', methods =['GET', 'POST'])
+def cambioPassword():
+   if request.method == 'GET':
+      nombre = session['administrador']
+      
+      ingresosModel = IngresosModel()
+      id_admin = session['id']
+      user = ingresosModel.traerCC(id_admin)
+      for u in user:
+         user = u[0]
+      passwor = ingresosModel.traerPassword(id_admin)
+      for p in passwor:
+         passwor = p[0]
+      return render_template('login/cambio_password.html', nombre = nombre, user = user, passwor = passwor)
+   nombre = request.form.get('nombre')
+   usuario = request.form.get('usuario')
+   password = request.form.get('password')
+
+   id = session['id']
+
+   ingresosModel = IngresosModel()
+   ingresosModel.cambiarPassword(id, nombre, usuario, password)
+   session.pop('usuario', None)
+   session.pop('administradorA', None)
+   session.pop('administrador', None)
+   session.pop('id', None)
+   
    return redirect(url_for('index'))

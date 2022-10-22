@@ -3,11 +3,10 @@
 
 {% block contenido %}
 <h1>Editar Empleado</h1>
-<a href="{{ url_for('empleados') }}">volver</a>
-<Center>
 <form method="POST">
     <div class="row">
         <div class="col-5 mb-3">
+            <label for="cargo">Cargo</label>
             <select class="form-select" required id="cargo" name="cargo">
                 <option selected value="">{{cargo}} (Seleccione)</option>
                 {% for nombreCargo in nombreCargos%}
@@ -16,31 +15,37 @@
             </select>
         </div>
         <div class="col-5 mb-3">
+            <label for="identificacion">Identificacion</label>
             <input type="number" value="{{identificacion}}" placeholder="Identificacion" required class="form-control" id="identificacion" name="identificacion">
         </div>
     </div>
 
     <div class="row">
         <div class="col-5 mb-3">
+            <label for="nombres">Nombres</label>
             <input type="text" maxlength="50" value="{{nombres}}" placeholder="Nombres" required class="form-control" id="nombres" name="nombres">
         </div>
 
         <div class="col-5 mb-3">
+            <label for="apellidos">Apellidos</label>
             <input type="text" maxlength="50" value="{{apellidos}}" placeholder="Apellidos" required class="form-control" id="apellidos" name="apellidos">
         </div>
     </div>
 
     <div class="row">
         <div class="col-5 mb-3">
+            <label for="Telefono">Telefono</label>
             <input type="number" value="{{telefono}}" placeholder="Telefono" required class="form-control" id="telefono" name="telefono">
         </div>
     
         <div class="col-5 mb-3">
+            <label for="direccion">Direccion</label>
             <input type="text" maxlength="50" value="{{direccion}}" placeholder="Direccion" required class="form-control" id="direccion" name="direccion">
         </div>
     </div>
     <div class="row">
-        <div class="col-3 mb-3">
+        <div class="col-5 mb-3">
+            <label for="genero">Genero</label>
             <select class="form-select" required id="genero" name="genero">
                 <option selected value="">{{genero}} (Seleccione)</option>
                     <option value="M">Masculino</option>
@@ -48,9 +53,11 @@
             </select>
         </div>
         <div class="col-5 mb-3">
+            <label for="password">Contraseña</label>
             <input type="text" maxlength="50" value="{{password}}" placeholder="Contraseña para acceder a la pagina" required class="form-control" id="password" name="password">
         </div>
     </div>
+    <input type="button" class="btn btn-primary" href="" value="Volver" onClick="history.go(-1);">
     <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black "; >Guardar</button>            
 </form>
 {% endblock%}

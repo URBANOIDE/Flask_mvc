@@ -3,8 +3,6 @@
 
 {% block contenido %}
 <h1>Editar Cliente</h1>
-<a href="{{ url_for('clientes') }}">volver</a>
-<Center>
 <form method="POST">
     <div class="row">
         <div class="col-5 mb-3">
@@ -46,10 +44,10 @@
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
             </select>
-        </div>
-        <div class="col mb-3">
-            <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black "; >Guardar</button>            
-        </div>
+        </div>           
     </div>
+    
+    <input type="button" class="btn btn-primary" href="" value="Volver" onClick="history.go(-1);">
+    <button type="submit" class="btn btn-primary" style="background-color: green; border-color:black; color:black "; >Guardar</button>
 </form>
 {% endblock%}

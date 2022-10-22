@@ -4,16 +4,8 @@
 {% block contenido %}
 <center>
     <nav class="navbar navbar-center navbar-dark bg-dark mb-3 col-5">
-        <div class="container-fluid">
+        <div class="navbar-collapse">
             <a class="navbar-brand">SELECCIONE EL CLIENTE</h1></a>
-            <div class="navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('user') }}">Volver</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
         <div class="navbar-collapse">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -32,8 +24,15 @@
                             {%endfor%}
                         </select>
                         </div>
+                        <p>
+                            <button type="submit" class="btn btn-primary" style="background-color:green">ENTRAR</button>
+                        </p>
+                    </form>
                     
-                        <button type="submit" class="btn btn-primary" style="background-color:green">ENTRAR</button>
+                    <form action="{{ url_for('user') }}" method="get">
+                        <p>
+                            <input type="submit" class="btn btn-primary" value="Volver" name="Submit" id="frm1_submit">
+                        </p>
                     </form>
                 </li>
             </ul>
