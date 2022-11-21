@@ -23,13 +23,14 @@ class VentasModel():
     def traerClientes(self):
         cursor = DB.cursor()
 
-        cursor.execute('SELECT nombres_cliente  FROM clientes')
+        cursor.execute('SELECT nombres_cliente, cedula_cliente  FROM clientes')
 
         clientes = cursor.fetchall()
 
         cursor.close()
-
+        
         return clientes
+
     def traerIdCliente(self, cliente):
         cursor = DB.cursor()
 
@@ -65,10 +66,20 @@ class VentasModel():
     def traerFactura(self, n_factura):
         cursor = DB.cursor()
 
-        cursor.execute("SELECT id_factura, nombres_producto, cantidad, total FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto  where n_factura = '"+ n_factura +"'")
+        cursor.execute("SELECT id_factura, nombres_producto, cantidad, precio_venta, total FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto  where n_factura = '"+ n_factura +"'")
 
         facturas = cursor.fetchall()
 
         cursor.close()
 
         return facturas
+    def datosClientes(self, cliente):
+        cursor = DB.cursor()
+
+        cursor.execute("SELECT cedula_cliente, nombres_cliente, apellidos_cliente  FROM clientes where nombres_cliente = '"+ cliente +"'")
+
+        clientes = cursor.fetchall()
+
+        cursor.close()
+
+        return clientes

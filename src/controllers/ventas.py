@@ -62,16 +62,24 @@ def ventasRegistro(id, cliente, n_factura):
 @app.route('/facturas/registro/<string:cliente>/<string:n_factura>', methods =['GET', 'POST'])
 def factura(cliente, n_factura):
     if request.method == 'GET':
-        empleado = session['administrador']
+        id_empleado = session['iden']
+        nombre_empleado = session['administrador']
+        apellido_empleado = session['administradorA']
+
         ventasModel = VentasModel()
-        #clientes = ventasModel.traerCliente(n_factura)
+        datos_cliente = ventasModel.datosClientes(cliente)
+        for datos in datos_cliente:
+            id_cliente = datos[0]
+            nombre_cliente = datos[1]
+            apellido_cliente = datos [2]
+        
         facturas = ventasModel.traerFactura(n_factura)
 
         #suma del total del precio de los productos almacenado en la variable total
         total = 0
         for e in facturas:
-            f = e[3]
-            total += e[3]        
-        return render_template('ventas/factura.html', n_factura=n_factura, facturas=facturas, empleado=empleado, cliente=cliente, total=total)
+            f = e[4]
+            total += e[4]        
+        return render_template('ventas/factura.html', n_factura=n_factura, facturas=facturas, id_empleado=id_empleado, cliente=cliente, total=total, nombre_empleado=nombre_empleado, apellido_empleado=apellido_empleado, id_cliente=id_cliente, nombre_cliente=nombre_cliente, apellido_cliente=apellido_cliente)
 
     

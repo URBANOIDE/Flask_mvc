@@ -47,6 +47,7 @@ def login_user():
   if user != None:
      #sesiones
      session['id'] = user[0]
+     session['identificacion'] = user[2]
      session['administrador'] = user[3]
      session['administradorA'] = user[4]
      session['usuario'] = "empleado"

@@ -20,7 +20,7 @@
                             <select class="form-select" required id="cliente" name="cliente">
                             <option selected value="">Seleccione (Cliente)</option>
                             {% for cliente in clientes%}
-                                <option value="{{cliente[0]}}">{{ cliente[0] }}</option>
+                                <option value="{{cliente[0]}}">{{ cliente[0] }} ({{ cliente[1] }})</option>
                             {%endfor%}
                         </select>
                         </div>

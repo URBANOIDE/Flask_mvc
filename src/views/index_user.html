@@ -6,47 +6,44 @@
 
 {% block contenido %}
 <center>
-    <nav class="navbar navbar-center navbar-dark bg-dark mb-3 col-7">
+    <nav class="navbar navbar-center navbar-dark bg-light mb-3 col-7">
         <div class="navbar-collapse">
-            <a class="navbar-brand"><h1>PAPELERIA KELI</h1></a>
-            <a class="navbar-brand">{{session['administrador']}} ({{session['usuario']}})</a>
+            <a class="navbar-brand" style="color: black;"><h1>PAPELERIA KELI</h1></a>
+            <a class="navbar-brand" style="color: black;">{{session['administrador']}} ({{session['usuario']}})</a>
         </div>
         <div class="navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <a class="nav-link active" aria-current="page">Administrar</a>
                 <li class="nav-item">
                     <p>
-                        <a class="btn btn-primary" href="{{ url_for('clientes') }}" role="button" style="background-color: green; border-color:black; color: black ">
+                        <a class="btn btn-primary" href="{{ url_for('clientes') }}" role="button" style="background-color: rgb(13, 203, 209); border-color:black; color: black ">
+                            <i class="bi bi-file-earmark-person-fill"></i><br>
                             <b>Clientes</b>
                         </a>
                     </p>
                     <p>
-                        <a class="btn btn-primary" href="{{ url_for('productos') }}" role="button" style="background-color: green; border-color:black; color: black ">
+                        <a class="btn btn-primary" href="{{ url_for('productos') }}" role="button" style="background-color: rgb(13, 203, 209); border-color:black; color: black ">
+                            <i class="bi bi-scissors"></i><br>
                             <b>Productos</b>
                         </a>
-                        <a class="btn btn-primary" href="{{ url_for('marcas') }}" role="button" style="background-color: green; border-color:black; color: black ">
+                        <a class="btn btn-primary" href="{{ url_for('marcas') }}" role="button" style="background-color: rgb(13, 203, 209); border-color:black; color: black ">
+                            <i class="bi bi-brush-fill"></i><br>
                             <b>Marcas</b>
                         </a>
-                        <a class="btn btn-primary" href="{{ url_for('empresas') }}" role="button" style="background-color: green; border-color:black; color: black ">
+                        <a class="btn btn-primary" href="{{ url_for('empresas') }}" role="button" style="background-color: rgb(13, 203, 209); border-color:black; color: black ">
+                            <i class="bi bi-briefcase-fill"></i><br>
                             <b>Empresas</b>
                         </a>
                     </p>
                     <p>
-                        
-                        <a href="{{ url_for('ventas') }}" style="color: red; width: 100; height: 100;">
-                            <span class="material-icons">
-                               add_shopping_cart
-                            </span>                        
-                        </a>
-                        <br>
-                        <a style="color: white">
-                            Registrar venta
+                        <a class="btn btn-primary" href="{{ url_for('ventas') }}" role="button" style="background-color: rgb(13, 203, 209); border-color:black; color: black ">
+                            <i class="bi bi-cart-plus-fill"></i><br>
+                            <b>Registra ventas</b>
                         </a>
                     </p>
                     
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ url_for('logout') }}" style="color: green">Cerrar Sesion</a> 
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('logout') }}" style="color: black">Cerrar Sesión</a> 
                 </li>
                
             </ul>

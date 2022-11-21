@@ -6,8 +6,8 @@
 </nav>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#"><b>Codigo Factura:</b> {{n_factura}} </a>
-    <a class="nav-link">Cliente: {{cliente}}</a>
-    <a class="nav-link">Vendedor: {{empleado}}</a>
+    <a class="nav-link"><b>Cliente:</b> ({{id_cliente}}) {{nombre_cliente}} {{apellido_cliente}}</a>
+    <a class="nav-link"><b>Vendedor:</b> ({{id_empleado}}) {{nombre_empleado}} {{apellido_empleado}}</a>
 </nav>
 <table class="table table-dark table-hover">
     <thead>
@@ -15,7 +15,8 @@
             <th>Id_registro_venta</th>
             <th>Producto</th>
             <th>Catidad</th>
-            <th>Precio</th>
+            <th>Precio unitario</th>
+            <th>Precio total</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +26,7 @@
             <td>{{ factura[1] }}</td>
             <td>{{ factura[2] }}</td>
             <td>{{ factura[3] }}</td>
+            <td>{{ factura[4] }}</td>
         </tr>
         {%endfor%}
     </tbody>
