@@ -1,9 +1,21 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from src import app
 from src.models.proveedores import ProveedoresModel
 
 @app.route('/proveedores')
 def proveedores():
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+    #aunque se haya logueado, solo el administrador podrá ingresar a la ruta
+    if session['usuario'] == 'empleado':
+        session.pop('usuario', None)
+        session.pop('administradorA', None)
+        session.pop('administrador', None)
+        session.pop('id', None)
+        session.pop('identificacion', None)
+        return render_template('login/login.html')
+        
     proveedoresModel =ProveedoresModel()
 
     proveedores = proveedoresModel.traerTodos()
@@ -12,9 +24,21 @@ def proveedores():
 
 @app.route('/proveedor/crear', methods =['GET', 'POST'])
 def crear_proveedor():
-   #esta funcion me sirve para mostrar el formulario de creacion
-   #y tambien me sirve para crear un nuevo producto
-   #estos pasos se identifican con los metodos 
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+    #aunque se haya logueado, solo el administrador podrá ingresar a la ruta
+    if session['usuario'] == 'empleado':
+        session.pop('usuario', None)
+        session.pop('administradorA', None)
+        session.pop('administrador', None)
+        session.pop('id', None)
+        session.pop('identificacion', None)
+        return render_template('login/login.html')
+
+    #esta funcion me sirve para mostrar el formulario de creacion
+    #y tambien me sirve para crear un nuevo producto
+    #estos pasos se identifican con los metodos 
     if request.method == 'GET':
         #Traer nombre de la empresa
         proveedoresModel = ProveedoresModel()
@@ -43,6 +67,18 @@ def crear_proveedor():
 ###########################################################################
 @app.route('/proveedor/editar/<int:id>', methods=['GET', 'POST'])
 def editar_proveedor(id):
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+    #aunque se haya logueado, solo el administrador podrá ingresar a la ruta
+    if session['usuario'] == 'empleado':
+        session.pop('usuario', None)
+        session.pop('administradorA', None)
+        session.pop('administrador', None)
+        session.pop('id', None)
+        session.pop('identificacion', None)
+        return render_template('login/login.html')
+
 
     if request.method == 'GET':
         ########TRAER LAS MARCAS Y PROVEDORES PARA HACERLOS SELECCIONABLES AL EDITAR UN PRODUCTO
@@ -106,6 +142,18 @@ def editar_proveedor(id):
 
 @app.route('/provedor/eliminado/<int:id>', methods=['GET', 'POST'])
 def eliminar_proveedor(id):
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+    #aunque se haya logueado, solo el administrador podrá ingresar a la ruta
+    if session['usuario'] == 'empleado':
+        session.pop('usuario', None)
+        session.pop('administradorA', None)
+        session.pop('administrador', None)
+        session.pop('id', None)
+        session.pop('identificacion', None)
+        return render_template('login/login.html')
+        
     proveedoresModel = ProveedoresModel()
     proveedoresModel.eliminarProductoProveedor(id)
     proveedoresModel.eliminar(id)

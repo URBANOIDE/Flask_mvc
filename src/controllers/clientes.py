@@ -1,17 +1,24 @@
 import marshal
 from xml.dom.minidom import Identified
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from src import app
 from src.models.clientes import ClientesModel
 
 @app.route('/clientes')
 def clientes():
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+
     clientesModel = ClientesModel()
     clientes = clientesModel.traerTodos()
     return render_template('clientes/index.html', clientes=clientes)
 
 @app.route('/clientes/eliminado/<int:id>', methods=['GET', 'POST'])
 def eliminar_cliente(id):
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
 
     clientesModel = ClientesModel()
     clientesModel.eliminarFacturaCliente(id)
@@ -22,6 +29,10 @@ def eliminar_cliente(id):
 
 @app.route('/clientes/crear', methods =['GET', 'POST'])
 def crear_cliente():
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+
     if request.method == 'GET':
         #TRAER LAS MARCAS Y PROVEDORES PARA HACERLOS SELECCIONABLES AL CREAR UN PRODUCTO
         clientesModel = ClientesModel()
@@ -49,7 +60,10 @@ def crear_cliente():
     return redirect(url_for('clientes'))
 @app.route('/cliente/editar/<int:id>', methods=['GET', 'POST'])
 def editar_cliente(id):
-
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+        
     if request.method == 'GET':
         ########TRAER LAS MARCAS Y PROVEDORES PARA HACERLOS SELECCIONABLES AL EDITAR UN PRODUCTO
         clientesModel = ClientesModel()

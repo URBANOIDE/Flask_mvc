@@ -7,6 +7,7 @@ from src.models.login import IngresosModel
 @app.route('/')
 def index():
     #return render_template('index.html')
+    print(session)
     return render_template('login/login.html')
 
 @app.route('/entrar/admin', methods =['GET', 'POST'])
@@ -64,6 +65,7 @@ def logout():
    session.pop('administradorA', None)
    session.pop('administrador', None)
    session.pop('id', None)
+   session.pop('identificacion', None)
 
    return redirect(url_for('index'))
 

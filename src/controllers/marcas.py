@@ -1,18 +1,26 @@
 import marshal
 from re import M
 from xml.dom.minidom import Identified
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from src import app
 from src.models.marcas import MarcasModel
 
 @app.route('/marcas')
 def marcas():
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+
     marcasModel = MarcasModel()
     marcas = marcasModel.traerTodos()
     return render_template('marcas/index.html', marcas=marcas)
 
 @app.route('/marcas/eliminado/<int:id>', methods=['GET', 'POST'])
 def eliminar_marca(id):
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+
     marcasModel = MarcasModel()
     marcasModel.eliminarProductoMarca(id)
     marcasModel.eliminar(id)
@@ -22,6 +30,10 @@ def eliminar_marca(id):
 
 @app.route('/marcas/crear', methods =['GET', 'POST'])
 def crear_marca():
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+
     if request.method == 'GET':
         #TRAER LOS CARGOS PARA HACERLOS SELECCIONABLES AL CREAR UN PRODUCTO
         marcasModel = MarcasModel()
@@ -46,7 +58,10 @@ def crear_marca():
 
 @app.route('/marcas/editar/<int:id>', methods=['GET', 'POST'])
 def editar_marca(id):
-
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+        
     if request.method == 'GET':
         ########TRAER LOS CARGOS PARA HACERLOS SELECCIONABLES AL EDITAR UN PRODUCTO
         marcasModel = MarcasModel()

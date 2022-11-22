@@ -1,11 +1,15 @@
 import marshal
 from xml.dom.minidom import Identified
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from src import app
 from src.models.productos import ProductosModel
 
 @app.route('/productos')
 def productos():
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+
     productosModel =ProductosModel()
 
     productos = productosModel.traerTodos()
@@ -15,6 +19,10 @@ def productos():
 
 @app.route('/productos/eliminado/<int:id>', methods=['GET', 'POST'])
 def eliminar_producto(id):
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+
     productosModel =ProductosModel()
 
     productosModel.eliminarFacturaProducto(id)
@@ -25,6 +33,10 @@ def eliminar_producto(id):
 
 @app.route('/productos/crear', methods =['GET', 'POST'])
 def crear_producto():
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+
    #esta funcion me sirve para mostrar el formulario de creacion
    #y tambien me sirve para crear un nuevo producto
    #estos pasos se identifican con los metodos 
@@ -61,7 +73,10 @@ def crear_producto():
 ###########################################################################
 @app.route('/productos/editar/<int:id>', methods=['GET', 'POST'])
 def editar_producto(id):
-
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+        
     if request.method == 'GET':
         ########TRAER LAS MARCAS Y PROVEDORES PARA HACERLOS SELECCIONABLES AL EDITAR UN PRODUCTO
         productosModel = ProductosModel()

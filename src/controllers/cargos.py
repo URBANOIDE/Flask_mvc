@@ -1,18 +1,42 @@
 import marshal
 from re import M
 from xml.dom.minidom import Identified
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from src import app
 from src.models.cargos import CargosModel
 
 @app.route('/cargos')
 def cargos():
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+    #aunque se haya logueado, solo el administrador podrá ingresar a la ruta
+    if session['usuario'] == 'empleado':
+        session.pop('usuario', None)
+        session.pop('administradorA', None)
+        session.pop('administrador', None)
+        session.pop('id', None)
+        session.pop('identificacion', None)
+        return render_template('login/login.html')
+
     cargosModel = CargosModel()
     cargos = cargosModel.traerTodos()
     return render_template('cargos/index.html', cargos=cargos)
 
 @app.route('/cargos/eliminado/<int:id>', methods=['GET', 'POST'])
 def eliminar_cargo(id):
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+    #aunque se haya logueado, solo el administrador podrá ingresar a la ruta
+    if session['usuario'] == 'empleado':
+        session.pop('usuario', None)
+        session.pop('administradorA', None)
+        session.pop('administrador', None)
+        session.pop('id', None)
+        session.pop('identificacion', None)
+        return render_template('login/login.html')
+
     cargosModel = CargosModel()
     cargosModel.eliminarEmpleadoCargo(id)
     cargosModel.eliminar(id)
@@ -22,6 +46,18 @@ def eliminar_cargo(id):
 
 @app.route('/cargos/crear', methods =['GET', 'POST'])
 def crear_cargo():
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+    #aunque se haya logueado, solo el administrador podrá ingresar a la ruta
+    if session['usuario'] == 'empleado':
+        session.pop('usuario', None)
+        session.pop('administradorA', None)
+        session.pop('administrador', None)
+        session.pop('id', None)
+        session.pop('identificacion', None)
+        return render_template('login/login.html')
+
     if request.method == 'GET':
         cargosModel = CargosModel()
         #mostramos el formulario de creacion
@@ -39,7 +75,18 @@ def crear_cargo():
 
 @app.route('/cargos/editar/<int:id>', methods=['GET', 'POST'])
 def editar_cargo(id):
-
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+    #aunque se haya logueado, solo el administrador podrá ingresar a la ruta
+    if session['usuario'] == 'empleado':
+        session.pop('usuario', None)
+        session.pop('administradorA', None)
+        session.pop('administrador', None)
+        session.pop('id', None)
+        session.pop('identificacion', None)
+        return render_template('login/login.html')
+        
     if request.method == 'GET':
         ########TRAER LOS CARGOS PARA HACERLOS SELECCIONABLES AL EDITAR UN PRODUCTO
         cargosModel = CargosModel()

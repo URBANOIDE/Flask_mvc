@@ -19,8 +19,10 @@ def ventas():
         #4 caracteres aleatorios, guardar en bd como url_corta
         codigo = ""
         codigo = codigo.join(random.choice(caracter) for i in range(longitud))
-        #mostramos el formulario de creacion
-        return render_template('ventas/cliente.html', clientes = clientes, codigo=codigo)
+        #verificacion de si se ha iniciado session
+        if session == {}:
+            return render_template('login/login.html')
+        else: return render_template('ventas/cliente.html', clientes = clientes, codigo=codigo) #mostramos el formulario de creacion
     n_factura = request.form.get('codigo')
     cliente = request.form.get('cliente')
 
@@ -30,6 +32,9 @@ def ventas():
 
 @app.route('/ventas/registro/<int:id>/<string:cliente>/<string:n_factura>', methods =['GET', 'POST'])
 def ventasRegistro(id, cliente, n_factura):
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
     if request.method == 'GET':
         ventasModel = VentasModel()
         producto = ventasModel.traerProducto(id)
@@ -61,8 +66,10 @@ def ventasRegistro(id, cliente, n_factura):
 
 @app.route('/facturas/registro/<string:cliente>/<string:n_factura>', methods =['GET', 'POST'])
 def factura(cliente, n_factura):
+    if session == {}:
+        return render_template('login/login.html')
     if request.method == 'GET':
-        id_empleado = session['iden']
+        id_empleado = session['identificacion']
         nombre_empleado = session['administrador']
         apellido_empleado = session['administradorA']
 

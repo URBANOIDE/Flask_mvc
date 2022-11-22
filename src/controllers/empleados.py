@@ -6,12 +6,35 @@ from src.models.empleados import EmpleadosModel
 
 @app.route('/empleados')
 def empleados():
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+    #aunque se haya logueado, solo el administrador podrá ingresar a la ruta
+    if session['usuario'] == 'empleado':
+        session.pop('usuario', None)
+        session.pop('administradorA', None)
+        session.pop('administrador', None)
+        session.pop('id', None)
+        session.pop('identificacion', None)
+        return render_template('login/login.html')
+
     empleadosModel = EmpleadosModel()
     empleados = empleadosModel.traerTodos()
     return render_template('empleados/index.html', empleados=empleados)
 
 @app.route('/empleados/eliminado/<int:id>', methods=['GET', 'POST'])
 def eliminar_empleado(id):
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+    #aunque se haya logueado, solo el administrador podrá ingresar a la ruta
+    if session['usuario'] == 'empleado':
+        session.pop('usuario', None)
+        session.pop('administradorA', None)
+        session.pop('administrador', None)
+        session.pop('id', None)
+        session.pop('identificacion', None)
+        return render_template('login/login.html')
 
     empleadosModel = EmpleadosModel()
     empleadosModel.eliminarFacturaEmpleado(id)
@@ -22,6 +45,18 @@ def eliminar_empleado(id):
 
 @app.route('/empleados/crear', methods =['GET', 'POST'])
 def crear_empleado():
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+    #aunque se haya logueado, solo el administrador podrá ingresar a la ruta
+    if session['usuario'] == 'empleado':
+        session.pop('usuario', None)
+        session.pop('administradorA', None)
+        session.pop('administrador', None)
+        session.pop('id', None)
+        session.pop('identificacion', None)
+        return render_template('login/login.html')
+
     if request.method == 'GET':
         #TRAER LAS MARCAS Y PROVEDORES PARA HACERLOS SELECCIONABLES AL CREAR UN PRODUCTO
         empleadosModel = EmpleadosModel()
@@ -51,6 +86,18 @@ def crear_empleado():
 
 @app.route('/empleados/editar/<int:id>', methods=['GET', 'POST'])
 def editar_empleado(id):
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+    #aunque se haya logueado, solo el administrador podrá ingresar a la ruta
+    if session['usuario'] == 'empleado':
+        session.pop('usuario', None)
+        session.pop('administradorA', None)
+        session.pop('administrador', None)
+        session.pop('id', None)
+        session.pop('identificacion', None)
+        return render_template('login/login.html')
+        
 
     if request.method == 'GET':
         ########TRAER LAS MARCAS Y PROVEDORES PARA HACERLOS SELECCIONABLES AL EDITAR UN PRODUCTO

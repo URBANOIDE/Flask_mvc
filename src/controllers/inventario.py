@@ -17,7 +17,9 @@ def inventario():
             ganancia += f
         #Verificacion de url para usuarios no identificados
         #print(session['usuario'])
-        return render_template('inventario/index.html', inventarios=inventarios, ganancia=ganancia)
+        if (session['usuario']!='empleado'):
+            return render_template('inventario/index.html', inventarios=inventarios, ganancia=ganancia)
+        else: return render_template('login/login.html')
 
     #### Cuando viene por metodo POST, para hacer una busqueda con las fechas
     fechaInicial = request.form.get('fecha_inicio')
