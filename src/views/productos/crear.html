@@ -42,8 +42,8 @@
             <input type="number" placeholder="Digite el precio de venta" required class="form-control" id="precio_venta" name="precio_venta">
         </div>
         <div class="col-5 mb-3">
-            <label for="ganancia">Ganancia (%)</label>
-            <input type="number" required class="form-control" id="ganancia" name="ganancia">
+            <label for="ganancia">IVA (19%)</label>
+            <input type="number" required class="form-control" id="ganancia" name="ganancia" readonly>
         </div>
     </div>
     
@@ -52,12 +52,10 @@
 </form>
 
 <script>
-    //control de ganancias
+    //control de IVA
     let inputPrecioCompra = document.querySelector('#precio_compra')
     let inputPrecioVenta = document.querySelector('#precio_venta')
     let inputGanancia = document.getElementById('ganancia')
-    let p = document.getElementById('provedor')
-    
     
     inputPrecioCompra.addEventListener('change', cambioPrecioCompra)
     function cambioPrecioCompra(e){
@@ -70,19 +68,9 @@
         // ganancia = (precio_venta / precio_compra) / 100
         let precio_venta = parseInt(inputPrecioVenta.value)
         let precio_compra = parseInt(inputPrecioCompra.value)
-        let ganancia = ((precio_venta - precio_compra)/ precio_compra) * 100
+        let ganancia = ((precio_venta * 19)/ 100)
         ganancia=parseInt(ganancia)
         inputGanancia.value = ganancia
     }
-
-    inputGanancia.addEventListener('change', cambioGanancia)
-    function cambioGanancia(e){
-        let precio_compra = parseInt(inputPrecioCompra.value)
-        let ganancia = parseInt(inputGanancia.value)
-        let precio_venta = (precio_compra * (ganancia/100)) + precio_compra
-        inputPrecioVenta.value = precio_venta
-    }
-
-    //control de cantidad de digitos en input tipo number
 </script>
 {% endblock%}

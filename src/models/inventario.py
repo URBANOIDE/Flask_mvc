@@ -8,7 +8,7 @@ class InventarioModel():
     def traerTodos(self):
         cursor = DB.cursor()
 
-        cursor.execute('SELECT n_factura, cedula_cliente, nombres_producto, precio_compra, precio_venta, cantidad, total, (precio_venta*cantidad)-(precio_compra*cantidad) AS ganancia, fecha FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto INNER	JOIN clientes ON factura.id_cliente_factura = clientes.id_cliente')
+        cursor.execute('SELECT n_factura, cedula_cliente, nombres_producto, cantidad, precio_compra, precio_venta, ganancia, total, (((precio_venta + ganancia)*cantidad) - (precio_compra * cantidad)) AS ganancia, fecha FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto INNER	JOIN clientes ON factura.id_cliente_factura = clientes.id_cliente')
 
         inventario = cursor.fetchall()
 
@@ -19,7 +19,7 @@ class InventarioModel():
     def traerPreciosProductosVendidos(self):
         cursor = DB.cursor()
 
-        cursor.execute('SELECT precio_compra, precio_venta, cantidad FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto INNER	JOIN clientes ON factura.id_cliente_factura = clientes.id_cliente')
+        cursor.execute('SELECT precio_compra, precio_venta, cantidad, ganancia FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto INNER	JOIN clientes ON factura.id_cliente_factura = clientes.id_cliente')
 
         precios_vendidos = cursor.fetchall()
 
@@ -29,7 +29,7 @@ class InventarioModel():
     def traerTodosFecha(self, fechaInicial, fechaFinal):
         cursor = DB.cursor()
 
-        cursor.execute('SELECT n_factura, cedula_cliente, nombres_producto, precio_compra, precio_venta, cantidad, total, (precio_venta*cantidad)-(precio_compra*cantidad) AS ganancia, fecha FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto INNER	JOIN clientes ON factura.id_cliente_factura = clientes.id_cliente WHERE((fecha  >= ?) AND (fecha <= ?))', (fechaInicial, fechaFinal))
+        cursor.execute('SELECT n_factura, cedula_cliente, nombres_producto, cantidad, precio_compra, precio_venta, ganancia, total, (((precio_venta + ganancia)*cantidad) - (precio_compra * cantidad)) AS ganancia, fecha FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto INNER	JOIN clientes ON factura.id_cliente_factura = clientes.id_cliente WHERE((fecha  >= ?) AND (fecha <= ?))', (fechaInicial, fechaFinal))
 
         inventario = cursor.fetchall()
 
@@ -40,7 +40,7 @@ class InventarioModel():
     def traerPreciosProductosVendidosFecha(self, fechaInicial, fechaFinal):
         cursor = DB.cursor()
 
-        cursor.execute('SELECT precio_compra, precio_venta, cantidad FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto INNER	JOIN clientes ON factura.id_cliente_factura = clientes.id_cliente WHERE((fecha  >= ?) AND (fecha <= ?))', (fechaInicial, fechaFinal))
+        cursor.execute('SELECT precio_compra, precio_venta, cantidad, ganancia FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto INNER	JOIN clientes ON factura.id_cliente_factura = clientes.id_cliente WHERE((fecha  >= ?) AND (fecha <= ?))', (fechaInicial, fechaFinal))
 
         precios_vendidos = cursor.fetchall()
 

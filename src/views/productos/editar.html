@@ -43,8 +43,8 @@
         </div>
         <div class="col-5 mb-3">
             <div class="mb-3">
-                <label for="ganancia">Ganancia (%)</label>
-                <input type="number" value="{{ganancia}}" required class="form-control" id="ganancia" name="ganancia">
+                <label for="ganancia">IVA (19%)</label>
+                <input type="number" value="{{ganancia}}" required class="form-control" id="ganancia" name="ganancia" readonly>
             </div>
         </div>
     </div>
@@ -68,18 +68,11 @@
         // ganancia = (precio_venta / precio_compra) / 100
         let precio_venta = parseInt(inputPrecioVenta.value)
         let precio_compra = parseInt(inputPrecioCompra.value)
-        let ganancia = ((precio_venta - precio_compra)/ precio_compra) * 100
+        let ganancia = ((precio_venta * 19)/ 100)
         ganancia=parseInt(ganancia)
         inputGanancia.value = ganancia
     }
 
-    inputGanancia.addEventListener('change', cambioGanancia)
-    function cambioGanancia(e){
-        let precio_compra = parseInt(inputPrecioCompra.value)
-        let ganancia = parseInt(inputGanancia.value)
-        let precio_venta = (precio_compra * (ganancia/100)) + precio_compra
-        inputPrecioVenta.value = precio_venta
-    }
 
 </script>
 {% endblock%}

@@ -6,7 +6,7 @@ class ProductosModel():
     def traerTodos(self):
         cursor = DB.cursor()
 
-        cursor.execute('SELECT id_producto, nombres_provedor, nombre_marca, nombres_producto, precio_compra, precio_venta, ganancia  FROM productos INNER JOIN marcas ON productos.id_marca_producto = marcas.id_marca INNER JOIN provedores ON productos.id_provedor_producto = provedores.id_provedor')
+        cursor.execute('SELECT id_producto, nombres_provedor, nombre_marca, nombres_producto, precio_compra, precio_venta, ganancia  FROM productos INNER JOIN marcas ON productos.id_marca_producto = marcas.id_marca INNER JOIN provedores ON productos.id_provedor_producto = provedores.id_provedor ORDER	BY id_producto  ASC')
 
         productos = cursor.fetchall()
 

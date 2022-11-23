@@ -13,7 +13,7 @@ def inventario():
         ganancia = 0
         f=0
         for e in precios_vendidos:
-            f = (e[1]-e[0])*e[2]
+            f = ((e[1]+e[3])*e[2])-(e[0]*e[2])
             ganancia += f
         #Verificacion de url para usuarios no identificados
         #print(session['usuario'])
@@ -31,7 +31,7 @@ def inventario():
     ganancia = 0
     f=0
     for e in precios_vendidos:
-        f = (e[1]-e[0])*e[2]
+        f = ((e[1]+e[3])*e[2])-(e[0]*e[2])
         ganancia += f
     #Verificacion de url para usuarios no identificados
     #print(session['usuario'])

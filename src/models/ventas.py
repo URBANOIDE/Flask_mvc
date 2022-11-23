@@ -6,7 +6,7 @@ class VentasModel():
     def traerTodos(self):
         cursor = DB.cursor()
 
-        cursor.execute('SELECT id_producto, nombres_provedor, nombre_marca, nombres_producto, precio_compra, precio_venta, ganancia  FROM productos INNER JOIN marcas ON productos.id_marca_producto = marcas.id_marca INNER JOIN provedores ON productos.id_provedor_producto = provedores.id_provedor')
+        cursor.execute('SELECT id_producto, nombres_provedor, nombre_marca, nombres_producto, precio_compra, precio_venta, ganancia  FROM productos INNER JOIN marcas ON productos.id_marca_producto = marcas.id_marca INNER JOIN provedores ON productos.id_provedor_producto = provedores.id_provedor ORDER	BY id_producto  ASC')
 
         productos = cursor.fetchall()
 
@@ -56,17 +56,18 @@ class VentasModel():
     def traerPrecio(self, id):
         cursor = DB.cursor()
 
-        cursor.execute("SELECT precio_venta  FROM productos where id_producto = ?",(id,))
+        cursor.execute("SELECT precio_venta, ganancia  FROM productos where id_producto = ?",(id,))
 
         precio = cursor.fetchall()
 
         cursor.close()
 
         return precio
+
     def traerFactura(self, n_factura):
         cursor = DB.cursor()
 
-        cursor.execute("SELECT id_factura, nombres_producto, cantidad, precio_venta, total FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto  where n_factura = '"+ n_factura +"'")
+        cursor.execute("SELECT id_factura, nombres_producto, cantidad, precio_venta, ganancia, total FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto  where n_factura = '"+ n_factura +"'")
 
         facturas = cursor.fetchall()
 
