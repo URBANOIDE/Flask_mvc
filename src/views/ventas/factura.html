@@ -2,7 +2,8 @@
 {% block contenido %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand"><h1><b>PAPELERIA KELI</b></h1></a>
+    <a class="navbar-brand"><h1><b>PAPELERIA DIYA</b></h1></a>
+    <div><b>NIT:&nbsp</b> 800.943.201</div>
 </nav>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#"><b>Codigo Factura:</b> {{n_factura}} </a>
@@ -16,7 +17,6 @@
             <th>Producto</th>
             <th>Catidad</th>
             <th>Precio unitario</th>
-            <th>IVA 19%</th>
             <th>Precio total</th>
         </tr>
     </thead>
@@ -27,25 +27,35 @@
             <td>{{ factura[1] }}</td>
             <td>{{ factura[2] }}</td>
             <td>{{ factura[3] }}</td>
-            <td>{{ factura[4] }}</td>
             <td>{{ factura[5] }}</td>
         </tr>
         {%endfor%}
     </tbody>
 </table>
 <center>
-    <p>
-        <h1>
-            <b>Total a pagar: {{ total }}</b>
-        </h1>
-    </p>
-    <p>
-        <button type="submit" onclick="imprimir();">Imprimir</button>
-    </p>
-    
-    <p>
-        <input type="button" class="btn btn-primary" href="" value="Volver" onClick="history.go(-1);">
-    </p>
+    <div class="row">
+        <div class="col-4 mb-3">
+            <label for="cantidad"><b>Subtotal</b></label>
+            <input type="number" value="{{total}}" required class="form-control" readonly>
+        </div>
+        <div class="col-4 mb-3">
+            <label for="total"><b>IVA</b></label>
+            <input type="number" value="{{iva}}" required class="form-control" id="total" name="total" readonly>
+        </div>
+        <div class="col-4 mb-3">
+            <label for="total"><b>Total</b></label>
+            <input type="number" value="{{total_iva}}" required class="form-control" id="total" name="total" readonly>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-3">
+            <button type="submit" onclick="imprimir();">Imprimir</button>
+        </div>
+        <div class="mb-3">
+            <input type="button" class="btn btn-primary" href="" value="Volver" onClick="history.go(-1);">
+        </div>
+
+    </div>
 </center>
 
 <script>

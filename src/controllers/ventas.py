@@ -42,7 +42,7 @@ def ventasRegistro(id, cliente, n_factura):
             producto = p[0]
         precio = ventasModel.traerPrecio(id)
         for pr in precio:
-            precio = pr[0]+pr[1]
+            precio = pr[0]
         return render_template('ventas/total.html', producto = producto, precio=precio)
 
     id_empleado_factura = session['id']
@@ -55,8 +55,10 @@ def ventasRegistro(id, cliente, n_factura):
 
     cantidad = request.form.get('cantidad')
     total = request.form.get('total')
+    #Calcular de la cantidad del producto vendido
+    total_iva = ((int(total) * 19)/100) + int(total)
 
-    ventasModel.crear(n_factura, id_empleado_factura, id_cliente_factura, id_producto_factura, cantidad, total)
+    ventasModel.crear(n_factura, id_empleado_factura, id_cliente_factura, id_producto_factura, cantidad, total, total_iva)
     productos = ventasModel.traerTodos()
     
 
@@ -84,9 +86,13 @@ def factura(cliente, n_factura):
 
         #suma del total del precio de los productos almacenado en la variable total
         total = 0
+        total_iva = 0
         for e in facturas:
             f = e[5]
-            total += e[5]        
-        return render_template('ventas/factura.html', n_factura=n_factura, facturas=facturas, id_empleado=id_empleado, cliente=cliente, total=total, nombre_empleado=nombre_empleado, apellido_empleado=apellido_empleado, id_cliente=id_cliente, nombre_cliente=nombre_cliente, apellido_cliente=apellido_cliente)
+            total += e[5]
+            total_iva += e[6]
+        iva = (int(total) * 19)/100
+        print(iva)
+        return render_template('ventas/factura.html', n_factura=n_factura, facturas=facturas, id_empleado=id_empleado, cliente=cliente, total=total, nombre_empleado=nombre_empleado, apellido_empleado=apellido_empleado, id_cliente=id_cliente, nombre_cliente=nombre_cliente, apellido_cliente=apellido_cliente, total_iva = total_iva, iva = iva)
 
     

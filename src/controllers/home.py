@@ -7,7 +7,6 @@ from src.models.login import IngresosModel
 @app.route('/')
 def index():
     #return render_template('index.html')
-    print(session)
     return render_template('login/login.html')
 
 @app.route('/entrar/admin', methods =['GET', 'POST'])

@@ -13,10 +13,10 @@ class VentasModel():
         cursor.close()
 
         return productos
-    def crear(self, n_factura, id_empleado_factura, id_cliente_factura, id_producto_factura, cantidad, total):
+    def crear(self, n_factura, id_empleado_factura, id_cliente_factura, id_producto_factura, cantidad, total, total_iva):
         cursor = DB.cursor()
 
-        cursor.execute('insert into factura(n_factura, id_empleado_factura, id_cliente_factura, id_producto_factura, cantidad, total) values(?,?,?,?,?,?)', (n_factura, id_empleado_factura, id_cliente_factura, id_producto_factura, cantidad, total))
+        cursor.execute('insert into factura(n_factura, id_empleado_factura, id_cliente_factura, id_producto_factura, cantidad, total, total_con_iva) values(?,?,?,?,?,?,?)', (n_factura, id_empleado_factura, id_cliente_factura, id_producto_factura, cantidad, total, total_iva))
         
         cursor.close()
 
@@ -67,7 +67,7 @@ class VentasModel():
     def traerFactura(self, n_factura):
         cursor = DB.cursor()
 
-        cursor.execute("SELECT id_factura, nombres_producto, cantidad, precio_venta, ganancia, total FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto  where n_factura = '"+ n_factura +"'")
+        cursor.execute("SELECT id_factura, nombres_producto, cantidad, precio_venta, ganancia, total, total_con_iva FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto  where n_factura = '"+ n_factura +"'")
 
         facturas = cursor.fetchall()
 
