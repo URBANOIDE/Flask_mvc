@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `acceso_admin` (
 -- Volcando datos para la tabla papeleria.acceso_admin: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `acceso_admin` DISABLE KEYS */;
 INSERT INTO `acceso_admin` (`id`, `usuario`, `password`, `nombre`, `email`) VALUES
-	(1, '1006946655', 'NubiaUrban0', 'Albeiro Albeiro', 'albertochindoy2020@itp.edu.co');
+	(1, '1006946655', 'NubiaUrban0', 'Alberto Albeiro', 'albertochindoy2020@itp.edu.co');
 /*!40000 ALTER TABLE `acceso_admin` ENABLE KEYS */;
 
 -- Volcando estructura para tabla papeleria.cargo
@@ -130,9 +130,9 @@ CREATE TABLE IF NOT EXISTS `factura` (
   CONSTRAINT `FK_factura_clientes` FOREIGN KEY (`id_cliente_factura`) REFERENCES `clientes` (`id_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_factura_empleados` FOREIGN KEY (`id_empleado_factura`) REFERENCES `empleados` (`id_empleado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_factura_productos` FOREIGN KEY (`id_producto_factura`) REFERENCES `productos` (`id_producto`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=333354 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=333355 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
--- Volcando datos para la tabla papeleria.factura: ~9 rows (aproximadamente)
+-- Volcando datos para la tabla papeleria.factura: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `factura` DISABLE KEYS */;
 INSERT INTO `factura` (`id_factura`, `n_factura`, `id_empleado_factura`, `id_cliente_factura`, `id_producto_factura`, `cantidad`, `total`, `total_con_iva`, `fecha`) VALUES
 	(333345, 'd0ññmtfqk0', 28, 27, 31, 5, 20000, 23800, '2022-10-23'),
@@ -143,7 +143,8 @@ INSERT INTO `factura` (`id_factura`, `n_factura`, `id_empleado_factura`, `id_cli
 	(333350, 'jwhywañyrq', 28, 26, 33, 50, 100000, 119000, '2022-10-23'),
 	(333351, 'jwhywañyrq', 28, 26, 35, 40, 80000, 95200, '2022-11-23'),
 	(333352, 'vaso0dcmñv', 28, 25, 36, 2, 30000, 35700, '2022-11-24'),
-	(333353, 'vaso0dcmñv', 28, 25, 31, 5, 20000, 23800, '2022-11-24');
+	(333353, 'vaso0dcmñv', 28, 25, 31, 5, 20000, 23800, '2022-11-24'),
+	(333354, '7qckisñdb5', 28, 25, 33, 4, 8000, 9520, '2022-11-24');
 /*!40000 ALTER TABLE `factura` ENABLE KEYS */;
 
 -- Volcando estructura para tabla papeleria.marcas
@@ -155,13 +156,14 @@ CREATE TABLE IF NOT EXISTS `marcas` (
   PRIMARY KEY (`id_marca`),
   KEY `FK_marcas_empresa` (`id_empresa_marca`),
   CONSTRAINT `FK_marcas_empresa` FOREIGN KEY (`id_empresa_marca`) REFERENCES `empresa` (`id_empresa`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
--- Volcando datos para la tabla papeleria.marcas: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla papeleria.marcas: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `marcas` DISABLE KEYS */;
 INSERT INTO `marcas` (`id_marca`, `id_empresa_marca`, `nombre_marca`, `nacionalidad_marca`) VALUES
 	(7, 3, 'Aluminum', 'Greece'),
-	(23, 6, 'Mirado', 'Canada');
+	(23, 6, 'Mirado', 'Canada'),
+	(24, 3, 'Paper', 'Colombia');
 /*!40000 ALTER TABLE `marcas` ENABLE KEYS */;
 
 -- Volcando estructura para tabla papeleria.productos
