@@ -29,7 +29,7 @@ class InventarioModel():
     def traerTodosFecha(self, fechaInicial, fechaFinal):
         cursor = DB.cursor()
 
-        cursor.execute('SELECT n_factura, cedula_cliente, nombres_producto, cantidad, precio_compra, precio_venta, ganancia, total, (((precio_venta + ganancia)*cantidad) - (precio_compra * cantidad)) AS ganancia, fecha FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto INNER	JOIN clientes ON factura.id_cliente_factura = clientes.id_cliente WHERE((fecha  >= ?) AND (fecha <= ?))', (fechaInicial, fechaFinal))
+        cursor.execute('SELECT n_factura, cedula_cliente, nombres_producto, cantidad, precio_compra, precio_venta, ganancia, total, total_con_iva, (((precio_venta + ganancia)*cantidad) - (precio_compra * cantidad)) AS ganancia, fecha FROM factura INNER JOIN productos ON factura.id_producto_factura = productos.id_producto INNER	JOIN clientes ON factura.id_cliente_factura = clientes.id_cliente WHERE((fecha  >= ?) AND (fecha <= ?))', (fechaInicial, fechaFinal))
 
         inventario = cursor.fetchall()
 
