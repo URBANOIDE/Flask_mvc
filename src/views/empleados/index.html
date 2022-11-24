@@ -7,6 +7,7 @@
     <a class="nav-link" href="{{ url_for('admin') }}"><b>Inicio</b></a>
     <a class="nav-link" href="{{ url_for('crear_empleado') }}"><b>Agregar empleado</b></a>
 </nav>
+<div class="table-responsive">
 <table class="table table-dark table-hover">
     <thead>
         <tr>
@@ -53,5 +54,5 @@
         {%endfor%}
     </tbody>
 </table>
-
+</div>
 {% endblock %}
