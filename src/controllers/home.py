@@ -70,26 +70,37 @@ def logout():
 
 @app.route('/entrar/admin/password', methods =['GET', 'POST'])
 def cambioPassword():
+   #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+   if session == {}:
+        return render_template('login/login.html')
+   #aunque se haya logueado, solo el administrador podrá ingresar a la ruta
+   if session['usuario'] == 'empleado':
+        session.pop('usuario', None)
+        session.pop('administradorA', None)
+        session.pop('administrador', None)
+        session.pop('id', None)
+        session.pop('identificacion', None)
+        return render_template('login/login.html')
    if request.method == 'GET':
       nombre = session['administrador']
       
       ingresosModel = IngresosModel()
       id_admin = session['id']
-      user = ingresosModel.traerCC(id_admin)
+      user = ingresosModel.traerDatosAdmin(id_admin)
       for u in user:
          user = u[0]
-      passwor = ingresosModel.traerPassword(id_admin)
-      for p in passwor:
-         passwor = p[0]
-      return render_template('login/cambio_password.html', nombre = nombre, user = user, passwor = passwor)
+         passwor = u[1]
+         email = u[2]
+      return render_template('login/cambio_password.html', nombre = nombre, user = user, passwor = passwor, email = email)
    nombre = request.form.get('nombre')
    usuario = request.form.get('usuario')
    password = request.form.get('password')
+   email = request.form.get('email')
 
    id = session['id']
 
    ingresosModel = IngresosModel()
-   ingresosModel.cambiarPassword(id, nombre, usuario, password)
+   ingresosModel.cambiarPassword(id, nombre, usuario, password, email)
    session.pop('usuario', None)
    session.pop('administradorA', None)
    session.pop('administrador', None)

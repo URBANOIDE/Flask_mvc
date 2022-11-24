@@ -27,34 +27,23 @@ class IngresosModel():
         
 
         return user_exist
-    def cambiarPassword(self, id, nombre, usuario, password):
+    def cambiarPassword(self, id, nombre, usuario, password, email):
         cursor = DB.cursor()
 
-        cursor.execute(""" UPDATE acceso_admin SET usuario = ?, password = ?, nombre = ? WHERE id = ?""",(usuario, password, nombre, id,))
+        cursor.execute(""" UPDATE acceso_admin SET usuario = ?, password = ?, nombre = ?, email = ? WHERE id = ?""",(usuario, password, nombre, email, id,))
         
         cursor.close()
 
-    def traerCC(self, id_admin):
+    def traerDatosAdmin(self, id_admin):
 
         cursor = DB.cursor()
 
-        cursor.execute('select usuario from acceso_admin WHERE id = ?', (id_admin,))
+        cursor.execute('select usuario, password, email from acceso_admin WHERE id = ?', (id_admin,))
         
-        user = cursor.fetchall()
-        
-        cursor.close()
-
-        return user
-    def traerPassword(self, id_admin):
-
-        cursor = DB.cursor()
-
-        cursor.execute('select password from acceso_admin WHERE id = ?', (id_admin,))
-        
-        passwor = cursor.fetchall()
+        admin = cursor.fetchall()
         
         cursor.close()
 
-        return passwor
+        return admin
 
 

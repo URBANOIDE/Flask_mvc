@@ -23,13 +23,14 @@ CREATE TABLE IF NOT EXISTS `acceso_admin` (
   `usuario` varchar(50) NOT NULL DEFAULT '0',
   `password` varchar(50) NOT NULL DEFAULT '0',
   `nombre` varchar(50) NOT NULL DEFAULT '0',
+  `email` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 -- Volcando datos para la tabla papeleria.acceso_admin: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `acceso_admin` DISABLE KEYS */;
-INSERT INTO `acceso_admin` (`id`, `usuario`, `password`, `nombre`) VALUES
-	(1, '1006946655', '1273', 'Albeiro');
+INSERT INTO `acceso_admin` (`id`, `usuario`, `password`, `nombre`, `email`) VALUES
+	(1, '1006946655', 'NubiaUrban0', 'Albeiro Albeiro', 'albertochindoy2020@itp.edu.co');
 /*!40000 ALTER TABLE `acceso_admin` ENABLE KEYS */;
 
 -- Volcando estructura para tabla papeleria.cargo
@@ -62,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   CONSTRAINT `FK_clientes_empresa` FOREIGN KEY (`id_empresa_cliente`) REFERENCES `empresa` (`id_empresa`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
--- Volcando datos para la tabla papeleria.clientes: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla papeleria.clientes: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
 INSERT INTO `clientes` (`id_cliente`, `id_empresa_cliente`, `cedula_cliente`, `nombres_cliente`, `apellidos_cliente`, `telefono_cliente`, `direccion_cliente`, `sexo_cliente`) VALUES
 	(25, 3, '1998936744', 'Hugo', 'Chavez', '3276489399', 'Mocoa', 'M'),
@@ -120,6 +121,7 @@ CREATE TABLE IF NOT EXISTS `factura` (
   `id_producto_factura` int(11) unsigned NOT NULL,
   `cantidad` int(50) DEFAULT NULL,
   `total` int(50) DEFAULT NULL,
+  `total_con_iva` int(50) DEFAULT NULL,
   `fecha` date DEFAULT current_timestamp(),
   PRIMARY KEY (`id_factura`),
   KEY `FK_factura_empleados` (`id_empleado_factura`),
@@ -128,15 +130,18 @@ CREATE TABLE IF NOT EXISTS `factura` (
   CONSTRAINT `FK_factura_clientes` FOREIGN KEY (`id_cliente_factura`) REFERENCES `clientes` (`id_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_factura_empleados` FOREIGN KEY (`id_empleado_factura`) REFERENCES `empleados` (`id_empleado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_factura_productos` FOREIGN KEY (`id_producto_factura`) REFERENCES `productos` (`id_producto`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=333335 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=333352 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
--- Volcando datos para la tabla papeleria.factura: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla papeleria.factura: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `factura` DISABLE KEYS */;
-INSERT INTO `factura` (`id_factura`, `n_factura`, `id_empleado_factura`, `id_cliente_factura`, `id_producto_factura`, `cantidad`, `total`, `fecha`) VALUES
-	(333331, 'x1jv23tmpy', 28, 27, 32, 4, 23800, '2022-09-22'),
-	(333332, 'x1jv23tmpy', 28, 27, 32, 4, 23800, '2022-09-22'),
-	(333333, 'x1jv23tmpy', 28, 27, 36, 3, 53550, '2022-11-22'),
-	(333334, 'x1jv23tmpy', 28, 27, 37, 10, 11900, '2022-11-22');
+INSERT INTO `factura` (`id_factura`, `n_factura`, `id_empleado_factura`, `id_cliente_factura`, `id_producto_factura`, `cantidad`, `total`, `total_con_iva`, `fecha`) VALUES
+	(333345, 'd0ññmtfqk0', 28, 27, 31, 5, 20000, 23800, '2022-10-23'),
+	(333346, 'd0ññmtfqk0', 28, 27, 32, 5, 25000, 29750, '2022-10-23'),
+	(333347, '8jy3hafu4g', 28, 25, 35, 5, 10000, 11900, '2022-11-23'),
+	(333348, '8jy3hafu4g', 28, 25, 34, 7, 14000, 16660, '2022-11-23'),
+	(333349, 'jwhywañyrq', 28, 26, 31, 5, 20000, 23800, '2022-11-23'),
+	(333350, 'jwhywañyrq', 28, 26, 33, 50, 100000, 119000, '2022-10-23'),
+	(333351, 'jwhywañyrq', 28, 26, 35, 40, 80000, 95200, '2022-11-23');
 /*!40000 ALTER TABLE `factura` ENABLE KEYS */;
 
 -- Volcando estructura para tabla papeleria.marcas
@@ -150,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `marcas` (
   CONSTRAINT `FK_marcas_empresa` FOREIGN KEY (`id_empresa_marca`) REFERENCES `empresa` (`id_empresa`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
--- Volcando datos para la tabla papeleria.marcas: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla papeleria.marcas: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `marcas` DISABLE KEYS */;
 INSERT INTO `marcas` (`id_marca`, `id_empresa_marca`, `nombre_marca`, `nacionalidad_marca`) VALUES
 	(7, 3, 'Aluminum', 'Greece'),

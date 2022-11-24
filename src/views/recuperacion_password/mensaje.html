@@ -1,0 +1,48 @@
+{% extends 'layouts/base.html' %} 
+{% block titulo %} Recuperación de contraseña {% endblock %} 
+
+{% block contenido %}
+    <center>
+        <nav class="navbar navbar-center navbar-dark bg-light mb-3 col-7">
+            <div class="navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <p>
+                        <div class="col-6 mb-3">
+                            <label for="informacion">
+                                <h1>
+                                    <b>PAPELERIA DIYA</b>
+                                </h1>
+                            </label>
+                        </div>    
+                    </p>
+                            <p>
+                                <div class="col-6 mb-3">
+                                    <label for="informacion">
+                                        <h2>
+                                            <b>Los datos para el inicio de sesión son</b>
+                                        </h2>
+                                    </label>
+                                </div>    
+                            </p>
+                            <p>
+                                <div class="d-flex gap-1 justify-content-center mt-1 mb-3">
+                                    <label for="usuario"><h3><b>Usuario:</b></h3></label>
+                                    <a class="navbar-brand" style="color: blue"><h3>{{usuario}}</h3></a>
+                                </div>
+                            </p>
+                            <p>
+                                <div class="d-flex gap-1 justify-content-center mt-1 mb-3">
+                                    <label for="contraseña"><h3><b>Contraseña:</b></h3></label>
+                                    <a class="navbar-brand" style="color: blue"><h3>{{password}}</h3></a>
+                                </div>
+                            </p>
+                        
+                    </li>
+                   
+                </ul>
+            </div>
+        </nav>
+    </center>
+
+
+{% endblock %}
