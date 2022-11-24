@@ -1,42 +1,31 @@
 {% extends 'layouts/base.html' %} {% block titulo %} Inventario {% endblock %}
 {% block contenido %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand">Registro de ventas</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ url_for('admin') }}">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" tabindex="-1" aria-disabled="true">Ganancia total: {{ganancia}}</a>
-        </li>
-      </ul>
-
-      <form class="d-flex" action="{{ url_for('inventario') }}" method="POST">
-        <a class="nav-link disabled" tabindex="-1" aria-disabled="true">Fecha inicial</a>
-        <div class="mb-1">
-          <input type="date" required class="form-control" value="{{fechaInicial}}" id="fecha_inicio" name="fecha_inicio">
-        </div>
-
-        
-        <a class="nav-link disabled" tabindex="-1" aria-disabled="true">Fecha final</a>
-        <div class="mb-1">
-          <input type="date" required class="form-control" value="{{fechaFinal}}" id="fecha_final" name="fecha_final">
-        </div>
-        &nbsp&nbsp
-        <button class="btn btn-outline-success" type="submit">
-          <span class="material-icons">
-            search
-          </span>
-        </button>
-      </form>
-
+  <a class="navbar-brand"><h2><b>REGISTRO DE VENTAS</b></h2></a>
+</nav>
+<nav class="navbar navbar-light bg-light">
+  <a class="nav-link" href="{{ url_for('admin') }}"><b>Inicio</b></a>
+  <a class="nav-link"><b>Ganancia total:</b> {{ganancia}} </a>
+  <form class="d-flex" action="{{ url_for('inventario') }}" method="POST">
+    <a class="nav-link"><b>Fecha inicial</b></a>
+    <div class="mb-1">
+      <input type="date" required class="form-control" value="{{fechaInicial}}" id="fecha_inicio" name="fecha_inicio">
     </div>
-  </div>
+
+    
+    <a class="nav-link"><b>Fecha inicial</b></a>
+    <div class="mb-1">
+      <input type="date" required class="form-control" value="{{fechaFinal}}" id="fecha_final" name="fecha_final">
+    </div>
+    <div class="mb-lg-0">
+      <button class="btn btn-outline-primary" type="submit">
+        <span class="material-icons">
+          search
+        </span>
+      </button>
+    </div>
+    
+  </form>
 </nav>
 <table class="table table-dark table-hover">
     <thead>

@@ -1,22 +1,15 @@
 {% extends 'layouts/base.html' %} {% block titulo %} Clientes {% endblock %}
 {% block contenido %}
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand">Clientes</a>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-            {% if session['usuario'] == "administrador" %}
-            <a class="nav-link" href="{{ url_for('admin') }}">Inicio</a>
-            {%else%}
-            <a class="nav-link" href="{{ url_for('user') }}">Inicio</a>
-            {%endif%}
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('crear_cliente') }}">Crear Cliente</a>
-        </li>
-      </ul>
-    </div>
+    <a class="navbar-brand"><h2><b>CLIENTES</b></h2></a>
+</nav>
+<nav class="navbar navbar-light bg-light">
+    {% if session['usuario'] == "administrador" %}
+    <a class="nav-link" href="{{ url_for('admin') }}"><b>Inicio</b></a>
+    {%else%}
+    <a class="nav-link" href="{{ url_for('user') }}"><b>Inicio</b></a>
+    {%endif%}
+    <a class="nav-link" href="{{ url_for('crear_cliente') }}"><b>Agregar cliente</b></a>
 </nav>
   
 <table class="table table-dark table-hover">

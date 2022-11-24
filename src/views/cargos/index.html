@@ -1,18 +1,11 @@
 {% extends 'layouts/base.html' %} {% block titulo %} Cargos {% endblock %}
 {% block contenido %}
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand">Cargos</a>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url_for('admin') }}">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('crear_cargo') }}">Agregar Cargo</a>
-        </li>
-      </ul>
-    </div>
+    <a class="navbar-brand"><h2><b>CARGOS</b></h2></a>
+</nav>
+<nav class="navbar navbar-light bg-light">
+    <a class="nav-link" href="{{ url_for('admin') }}"><b>Inicio</b></a>
+    <a class="nav-link" href="{{ url_for('crear_cargo') }}"><b>Agregar cargo</b></a>
 </nav>
   
 <table class="table table-dark table-hover">

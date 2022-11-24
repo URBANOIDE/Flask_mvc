@@ -3,10 +3,12 @@
 
 {% block contenido %}
 <center>
-    <nav class="navbar navbar-center navbar-dark bg-dark mb-3 col-5">
+    <nav class="navbar navbar-center navbar-dark bg-light mb-3 col-7">
         <div class="navbar-collapse">
-            <a class="navbar-brand">SELECCIONE EL CLIENTE</h1></a>
-        <div class="navbar-collapse">
+            <div class="text-center fs-1 fw-bold">SELECCIONE EL CLIENTE</div>
+            <a class="navbar-brand" style="color: black;"></a>
+        </div>
+        <div class="navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <form method="POST">
@@ -34,9 +36,10 @@
                             <input type="submit" class="btn btn-primary" value="Volver" name="Submit" id="frm1_submit">
                         </p>
                     </form>
+                    
                 </li>
+               
             </ul>
         </div>
-    </nav>
-    </center>
+</center>
 {% endblock%}

@@ -1,27 +1,17 @@
 {% extends 'layouts/base.html' %} {% block titulo %} Ventas {% endblock %}
 {% block contenido %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand">Productos</a>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          {% if session['usuario'] == "administrador" %}
-          <a class="nav-link" href="{{ url_for('admin') }}">Inicio</a>
-          {%else%}
-          <a class="nav-link" href="{{ url_for('user') }}">Inicio</a>
-          {%endif%}
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link">Codigo de factura: {{n_factura}}</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link">Cliente: {{cliente}}</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url_for('factura', cliente=cliente, n_factura=n_factura )}}"  method="POST">Generar Factura</a>
-        </li>
-      </ul>
-    </div>
+  <a class="navbar-brand"><h2><b>PRODUCTOS</b></h2></a>
+</nav>
+<nav class="navbar navbar-light bg-light">
+  {% if session['usuario'] == "administrador" %}
+  <a class="nav-link" href="{{ url_for('admin') }}"><b>Inicio</b></a>
+  {%else%}
+  <a class="nav-link" href="{{ url_for('user') }}"><b>Inicio</b></a>
+  {%endif%}
+  <a class="nav-link"><b>Codigo de factura:</b> {{n_factura}}</a>
+  <a class="nav-link"><b>Cliente:</b> {{cliente}}</a>
+  <a class="nav-link" href="{{ url_for('factura', cliente=cliente, n_factura=n_factura )}}"  method="POST"><b>Generar Factura</b></a>
 </nav>
 <table class="table table-dark table-hover">
     <thead>
