@@ -34,6 +34,7 @@ class IngresosModel():
         
         cursor.close()
 
+    #Para enviarlos al correo en forma de recuperacion
     def traerDatosAdmin(self, id_admin):
 
         cursor = DB.cursor()

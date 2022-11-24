@@ -21,13 +21,13 @@ USE `papeleria`;
 CREATE TABLE IF NOT EXISTS `acceso_admin` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `usuario` varchar(50) NOT NULL DEFAULT '0',
-  `password` varchar(50) NOT NULL DEFAULT '0',
+  `password` varchar(50) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT '0',
   `nombre` varchar(50) NOT NULL DEFAULT '0',
   `email` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
--- Volcando datos para la tabla papeleria.acceso_admin: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla papeleria.acceso_admin: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `acceso_admin` DISABLE KEYS */;
 INSERT INTO `acceso_admin` (`id`, `usuario`, `password`, `nombre`, `email`) VALUES
 	(1, '1006946655', 'NubiaUrban0', 'Albeiro Albeiro', 'albertochindoy2020@itp.edu.co');
@@ -81,17 +81,17 @@ CREATE TABLE IF NOT EXISTS `empleados` (
   `telefono_empleado` varchar(50) DEFAULT NULL,
   `direccion_empleado` varchar(50) DEFAULT NULL,
   `sexo_empleado` varchar(50) DEFAULT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(50) CHARACTER SET latin1 COLLATE latin1_general_cs DEFAULT NULL,
   PRIMARY KEY (`id_empleado`),
   KEY `FK_empleados_cargo` (`id_cargo_empleado`),
   CONSTRAINT `FK_empleados_cargo` FOREIGN KEY (`id_cargo_empleado`) REFERENCES `cargo` (`id_cargo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 -- Volcando datos para la tabla papeleria.empleados: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
 INSERT INTO `empleados` (`id_empleado`, `id_cargo_empleado`, `cedula_empleado`, `nombres_empleado`, `apellidos_empleado`, `telefono_empleado`, `direccion_empleado`, `sexo_empleado`, `password`) VALUES
 	(28, 13, '1006946655', 'Hugo', 'Chavez', '3155447848', 'Mocoa', 'M', '1273'),
-	(29, 13, '1006946666', 'Albeiro', 'Chindoy', '3155447848', 'Mocoa', 'M', '1273');
+	(30, 13, '1111111111', 'Junior', 'Perez', '3124857689', 'Pepitoperez@gmail.com', 'M', '1273');
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 
 -- Volcando estructura para tabla papeleria.empresa
@@ -130,9 +130,9 @@ CREATE TABLE IF NOT EXISTS `factura` (
   CONSTRAINT `FK_factura_clientes` FOREIGN KEY (`id_cliente_factura`) REFERENCES `clientes` (`id_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_factura_empleados` FOREIGN KEY (`id_empleado_factura`) REFERENCES `empleados` (`id_empleado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_factura_productos` FOREIGN KEY (`id_producto_factura`) REFERENCES `productos` (`id_producto`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=333352 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=333354 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
--- Volcando datos para la tabla papeleria.factura: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla papeleria.factura: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `factura` DISABLE KEYS */;
 INSERT INTO `factura` (`id_factura`, `n_factura`, `id_empleado_factura`, `id_cliente_factura`, `id_producto_factura`, `cantidad`, `total`, `total_con_iva`, `fecha`) VALUES
 	(333345, 'd0ññmtfqk0', 28, 27, 31, 5, 20000, 23800, '2022-10-23'),
@@ -141,7 +141,9 @@ INSERT INTO `factura` (`id_factura`, `n_factura`, `id_empleado_factura`, `id_cli
 	(333348, '8jy3hafu4g', 28, 25, 34, 7, 14000, 16660, '2022-11-23'),
 	(333349, 'jwhywañyrq', 28, 26, 31, 5, 20000, 23800, '2022-11-23'),
 	(333350, 'jwhywañyrq', 28, 26, 33, 50, 100000, 119000, '2022-10-23'),
-	(333351, 'jwhywañyrq', 28, 26, 35, 40, 80000, 95200, '2022-11-23');
+	(333351, 'jwhywañyrq', 28, 26, 35, 40, 80000, 95200, '2022-11-23'),
+	(333352, 'vaso0dcmñv', 28, 25, 36, 2, 30000, 35700, '2022-11-24'),
+	(333353, 'vaso0dcmñv', 28, 25, 31, 5, 20000, 23800, '2022-11-24');
 /*!40000 ALTER TABLE `factura` ENABLE KEYS */;
 
 -- Volcando estructura para tabla papeleria.marcas

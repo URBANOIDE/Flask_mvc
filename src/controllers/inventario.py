@@ -6,6 +6,17 @@ from src.models.inventario import InventarioModel
 
 @app.route('/inventario', methods =['GET', 'POST'])
 def inventario():
+    #verificacion de si se ha iniciado sesion, para que no puedan acceder a la ruta sin haberse logueado
+    if session == {}:
+        return render_template('login/login.html')
+    #aunque se haya logueado, solo el administrador podrá ingresar a la ruta
+    if session['usuario'] == 'empleado':
+        session.pop('usuario', None)
+        session.pop('administradorA', None)
+        session.pop('administrador', None)
+        session.pop('id', None)
+        session.pop('identificacion', None)
+        return render_template('login/login.html')
     if request.method == 'GET':
         inventarioModel = InventarioModel()
         inventarios = inventarioModel.traerTodos()
@@ -15,11 +26,7 @@ def inventario():
         for e in precios_vendidos:
             f = ((e[1]+e[3])*e[2])-(e[0]*e[2])
             ganancia += f
-        #Verificacion de url para usuarios no identificados
-        #print(session['usuario'])
-        if (session['usuario']!='empleado'):
-            return render_template('inventario/index.html', inventarios=inventarios, ganancia=ganancia)
-        else: return render_template('login/login.html')
+        return render_template('inventario/index.html', inventarios=inventarios, ganancia=ganancia)
 
     #### Cuando viene por metodo POST, para hacer una busqueda con las fechas
     fechaInicial = request.form.get('fecha_inicio')
@@ -33,7 +40,5 @@ def inventario():
     for e in precios_vendidos:
         f = ((e[1]+e[3])*e[2])-(e[0]*e[2])
         ganancia += f
-    #Verificacion de url para usuarios no identificados
-    #print(session['usuario'])
-    return render_template('inventario/index.html', inventarios=inventarios, ganancia=ganancia)
+    return render_template('inventario/index.html', inventarios=inventarios, ganancia=ganancia, fechaFinal=fechaFinal, fechaInicial=fechaInicial)
     

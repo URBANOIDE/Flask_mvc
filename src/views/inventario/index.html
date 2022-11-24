@@ -19,13 +19,13 @@
       <form class="d-flex" action="{{ url_for('inventario') }}" method="POST">
         <a class="nav-link disabled" tabindex="-1" aria-disabled="true">Fecha inicial</a>
         <div class="mb-1">
-          <input type="date" required class="form-control" id="fecha_inicio" name="fecha_inicio">
+          <input type="date" required class="form-control" value="{{fechaInicial}}" id="fecha_inicio" name="fecha_inicio">
         </div>
 
         
         <a class="nav-link disabled" tabindex="-1" aria-disabled="true">Fecha final</a>
         <div class="mb-1">
-          <input type="date" required class="form-control" id="fecha_final" name="fecha_final">
+          <input type="date" required class="form-control" value="{{fechaFinal}}" id="fecha_final" name="fecha_final">
         </div>
         &nbsp&nbsp
         <button class="btn btn-outline-success" type="submit">
