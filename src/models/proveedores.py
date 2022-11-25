@@ -143,10 +143,3 @@ class ProveedoresModel():
         cursor.close()
 
         return genero
-    #eliminar los productos del provedor que se va a eliminar
-    def eliminarProductoProveedor(self, id):
-        cursor = DB.cursor()
-
-        cursor.execute("""DELETE FROM productos WHERE id_provedor_producto = ?""", (id,))
-
-        cursor.close()

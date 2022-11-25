@@ -22,7 +22,6 @@ def eliminar_marca(id):
         return render_template('login/login.html')
 
     marcasModel = MarcasModel()
-    marcasModel.eliminarProductoMarca(id)
     marcasModel.eliminar(id)
     marcas = marcasModel.traerTodos()
    

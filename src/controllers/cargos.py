@@ -38,7 +38,6 @@ def eliminar_cargo(id):
         return render_template('login/login.html')
 
     cargosModel = CargosModel()
-    cargosModel.eliminarEmpleadoCargo(id)
     cargosModel.eliminar(id)
     cargos = cargosModel.traerTodos()
    

@@ -37,7 +37,6 @@ def eliminar_empleado(id):
         return render_template('login/login.html')
 
     empleadosModel = EmpleadosModel()
-    empleadosModel.eliminarFacturaEmpleado(id)
     empleadosModel.eliminar(id)
     empleados = empleadosModel.traerTodos()
    

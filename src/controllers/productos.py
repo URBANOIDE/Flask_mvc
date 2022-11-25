@@ -24,8 +24,6 @@ def eliminar_producto(id):
         return render_template('login/login.html')
 
     productosModel =ProductosModel()
-
-    productosModel.eliminarFacturaProducto(id)
     productosModel.eliminar(id)
     productos = productosModel.traerTodos()
    

@@ -61,13 +61,7 @@ class EmpleadosModel():
         cursor.close()
 
         return id_cargo_empleado
-    #al borrar un cliente tambien se eliminará su registro de factura
-    def eliminarFacturaEmpleado(self, id):
-        cursor = DB.cursor()
-
-        cursor.execute("""DELETE FROM factura WHERE id_empleado_factura = ?""", (id,))
-
-        cursor.close()
+        
     ###########Edicion
     #Requisitos para formulario de edicion de provedor
     #Traer los cargos para mostrar como seleccionable

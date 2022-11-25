@@ -61,14 +61,6 @@ class CargosModel():
         cursor.close()
 
         return id_marca_empresa
-
-    #al borrar una marca tambien se eliminará su producto
-    def eliminarEmpleadoCargo(self, id):
-        cursor = DB.cursor()
-
-        cursor.execute("""DELETE FROM empleados WHERE id_cargo_empleado = ?""", (id,))
-
-        cursor.close()
     ###########Edicion
     ##################
     #Requerimientos para editar, traer los datos ingresados para mostrar en el formulario y hacer su edicion

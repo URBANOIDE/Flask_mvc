@@ -62,13 +62,6 @@ class MarcasModel():
 
         return id_marca_empresa
 
-    #al borrar una marca tambien se eliminará su producto
-    def eliminarProductoMarca(self, id):
-        cursor = DB.cursor()
-
-        cursor.execute("""DELETE FROM productos WHERE id_marca_producto = ?""", (id,))
-
-        cursor.close()
     ###########Edicion
     ##################
     #Requerimientos para editar, traer los datos ingresados para mostrar en el formulario y hacer su edicion

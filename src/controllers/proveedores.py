@@ -155,7 +155,6 @@ def eliminar_proveedor(id):
         return render_template('login/login.html')
         
     proveedoresModel = ProveedoresModel()
-    proveedoresModel.eliminarProductoProveedor(id)
     proveedoresModel.eliminar(id)
     proveedores = proveedoresModel.traerTodos()
    

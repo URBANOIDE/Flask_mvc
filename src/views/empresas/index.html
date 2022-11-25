@@ -38,7 +38,7 @@
                 </a>
             </td>
             <td>
-                <a href="{{ url_for('eliminar_empresa', id=empresa[0])}}" style="color: red" onclick="alert('Al eliminar dicha empresa tambien se elimina el proveedor correspondiente')">
+                <a href="{{ url_for('eliminar_empresa', id=empresa[0])}}" style="color: red" onclick="alert('Al eliminar dicha empresa se eliminaran sus relaciones correspondientes (cliente, proveedor y marca)')">
                     <span class="material-icons">
                         delete
                     </span>

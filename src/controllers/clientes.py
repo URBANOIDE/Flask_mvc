@@ -21,7 +21,6 @@ def eliminar_cliente(id):
         return render_template('login/login.html')
 
     clientesModel = ClientesModel()
-    clientesModel.eliminarFacturaCliente(id)
     clientesModel.eliminar(id)
     clientes = clientesModel.traerTodos()
    

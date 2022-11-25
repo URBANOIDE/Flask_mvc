@@ -162,12 +162,4 @@ class ProductosModel():
         cursor.close()
 
         return ganancia
-    ##################
-    #Requerimientos para eliminar, eliminar la factura del producto eliminado
-    ##################
-    def eliminarFacturaProducto(self, id):
-        cursor = DB.cursor()
-
-        cursor.execute("""DELETE FROM factura WHERE id_producto_factura = ?""", (id,))
-
-        cursor.close()
+        

@@ -22,8 +22,6 @@ def eliminar_empresa(id):
         return render_template('login/login.html')
         
     empresasModel = EmpresasModel()
-    empresasModel.eliminarClienteEmpresa(id)
-    empresasModel.eliminarMarcaEmpresa(id)
     empresasModel.eliminar(id)
     empresas = empresasModel.traerTodos()
    

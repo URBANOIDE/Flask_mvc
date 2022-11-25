@@ -37,22 +37,7 @@ class EmpresasModel():
         cursor.execute("""UPDATE empresa SET nombre_empresa = ?, nit_empresa = ?, lugar_empresa = ?  WHERE id_empresa = ? """,(nombre_empresa, nit_empresa, lugar_empresa,id,))
         
         cursor.close()
-
-
-
-    
-    def eliminarClienteEmpresa(self, id):
-        cursor = DB.cursor()
-
-        cursor.execute("""DELETE FROM clientes WHERE id_empresa_cliente = ?""", (id,))
-
-        cursor.close()
-    def eliminarMarcaEmpresa(self, id):
-        cursor = DB.cursor()
-
-        cursor.execute("""DELETE FROM marcas WHERE id_empresa_marca = ?""", (id,))
-
-        cursor.close()
+        
     ###########Edicion
     ##################
     #Requerimientos para editar, traer los datos ingresados para mostrar en el formulario y hacer su edicion
